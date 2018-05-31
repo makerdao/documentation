@@ -23,7 +23,7 @@ A toolkit for easy integration of MakerDAO smart contract functionality with
 external platforms. 
 
 If you're a cryptocurrency exchange looking to add leveraged ETH positions through 
-distributed DAI lending to your platform, you're in the right place.
+distributed DAI lending to your platform, you're in the right place. 
 
 This library aims to support a wide range of platform architectures; from fully 
 decentralized with immediate on-chain settlement, to centralized exchange architectures 
