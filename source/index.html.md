@@ -17,223 +17,95 @@ includes:
 search: true
 ---
 
-# Introduction
-WIP MAKER JS DOCS
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+# MakerDAO Exchange Integration
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+[![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+A toolkit for easy integration of MakerDAO smart contract functionality with 
+external platforms. 
 
-# Authentication
+If you're a cryptocurrency exchange looking to add leveraged ETH positions through 
+distributed DAI lending to your platform, you're in the right place.
 
-> To authorize, use this code:
+This library aims to support a wide range of platform architectures; from fully 
+decentralized with immediate on-chain settlement, to centralized exchange architectures 
+with internal settlement services.
 
-```ruby
-require 'kittn'
+## Prerequisites
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+[![node][node]][node-url]
+[![npm][npm]][npm-url]
+      
+- [Node.js](http://es6-features.org)
+
+## Features
+
+- [Webpack](https://webpack.js.org/guides) (v3.5.5)
+    - [Webpack Dev Server](https://github.com/webpack/webpack-dev-server) (v2.7.1)
+    - [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement)
+    - [Clean Webpack Plugin](https://github.com/johnagan/clean-webpack-plugin) (v0.1.16)
+- [ECMAScript 6](http://es6-features.org)
+- [Babel](https://babeljs.io/docs/setup/#installation) (v6.26.0)
+- [ESLint](https://eslint.org/docs/user-guide/getting-started) (v4.5.0)
+- [Jest](https://facebook.github.io/jest/docs/en/getting-started.html) (v20.0.4)
+- [Sass](http://sass-lang.com/guide)
+
+## Start Dev Server
+
+1. `git clone https://github.com/makerdao/makerdao-integration-poc`
+2. Run `npm install`
+3. Start the dev server using `npm start`
+3. Open [http://localhost:9000](http://localhost:9000)
+
+
+## Commands
+
+- `npm start` - start the dev server
+- `npm run build` - create build in `dist` folder
+- `npm run lint` - run an ESLint check
+- `npm run coverage` - run code coverage and generate report in the `coverage` folder
+- `npm test` - run all tests
+- `npm run test:watch` - run all tests in watch mode
+
+## License
+_makerdao-exchange-integration_ is available under MIT.
+
+This project was built on the excellent [_webpack-es6-boilerplate_](https://github.com/jluccisano/webpack-es6-boilerplate).
+
+[npm]: https://img.shields.io/badge/npm-5.3.0-blue.svg
+[npm-url]: https://npmjs.com/
+
+[node]: https://img.shields.io/node/v/webpack-es6-boilerplate.svg
+[node-url]: https://nodejs.org
+
+[tests]: http://img.shields.io/travis/jluccisano/webpack-es6-boilerplate.svg
+[tests-url]: https://travis-ci.org/jluccisano/webpack-es6-boilerplate
+
+[cover]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate
+
+# Use Maker.js in Your Project 
+
+`npm install @makerdao/makerdao-exchange-integration`
+
+Import the necessary modules in your JS code:
+
+`import { Maker, ConfigFactory } from '@makerdao/makerdao-exchange-integration';`
+
+Then create a connected instance of the Maker class and use it to call CDP methods:
+
 ```
+async setupFunction() {
+  const config = ConfigFactory.create('kovan');
 
-```python
-import kittn
+  return await new Maker(config);
+}
 
-api = kittn.authorize('meowmeowmeow')
-```
+async someOtherFunction() {
+  const maker = await setupFunction();
+  const cdp = await maker.openCdp();
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  return await cdp.lockEth();
 }
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
