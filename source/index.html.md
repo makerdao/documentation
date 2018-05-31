@@ -2,9 +2,6 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
@@ -62,40 +59,25 @@ with internal settlement services.
 ## Commands
 
 - `npm start` - start the dev server
-- `npm run build` - create build in `dist` folder
+- `npm run build:backend` - create backend build in `dist` folder
+- `npm run build:frontend` - create frontend build in `dist` folder
 - `npm run lint` - run an ESLint check
 - `npm run coverage` - run code coverage and generate report in the `coverage` folder
 - `npm test` - run all tests
 - `npm run test:watch` - run all tests in watch mode
-
-## License
-_makerdao-exchange-integration_ is available under MIT.
-
-This project was built on the excellent [_webpack-es6-boilerplate_](https://github.com/jluccisano/webpack-es6-boilerplate).
-
-[npm]: https://img.shields.io/badge/npm-5.3.0-blue.svg
-[npm-url]: https://npmjs.com/
-
-[node]: https://img.shields.io/node/v/webpack-es6-boilerplate.svg
-[node-url]: https://nodejs.org
-
-[tests]: http://img.shields.io/travis/jluccisano/webpack-es6-boilerplate.svg
-[tests-url]: https://travis-ci.org/jluccisano/webpack-es6-boilerplate
-
-[cover]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate
+- `npm run test:net` - launch a Ganache test chain and deploy MakerDAO's contracts on it
 
 # Use Maker.js in Your Project 
 
 `npm install @makerdao/makerdao-exchange-integration`
 
-Import the necessary modules in your JS code:
+First, import the necessary modules in your JS code:
 
 `import { Maker, ConfigFactory } from '@makerdao/makerdao-exchange-integration';`
 
-Then create a connected instance of the Maker class and use it to call CDP methods:
+Then create a connected instance of the Maker class and use it to call CDP methods, like you see in the JS snippet in the right panel.
 
-```
+```javascript
 async setupFunction() {
   const config = ConfigFactory.create('kovan');
 
@@ -109,3 +91,15 @@ async someOtherFunction() {
   return await cdp.lockEth();
 }
 ```
+
+[npm]: https://img.shields.io/badge/npm-5.3.0-blue.svg
+[npm-url]: https://npmjs.com/
+
+[node]: https://img.shields.io/node/v/webpack-es6-boilerplate.svg
+[node-url]: https://nodejs.org
+
+[tests]: http://img.shields.io/travis/jluccisano/webpack-es6-boilerplate.svg
+[tests-url]: https://travis-ci.org/jluccisano/webpack-es6-boilerplate
+
+[cover]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate
