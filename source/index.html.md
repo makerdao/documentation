@@ -9,6 +9,8 @@ toc_footers:
 
 includes:
   - npm-package-setup
+  - maker
+  - cdp
   - source-code-setup
 
 search: true
