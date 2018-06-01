@@ -31,6 +31,33 @@ Maker's entire suite of contracts will eventually be accessible through this lib
 * Token contract functionality for WETH, PETH, MKR, Dai, and ETH
 * Buying and selling MKR and Dai with built-in DEX integration
 
+
+# NPM package setup 
+
+`npm install @makerdao/makerdao-exchange-integration`
+
+First, import the necessary modules in your JS code:
+
+`import { Maker, ConfigFactory } from '@makerdao/makerdao-exchange-integration';`
+
+Then create a connected instance of the Maker class and use it to call CDP methods, like you see in the JS snippet in the right panel.
+
+```javascript
+async setupFunction() {
+  const config = ConfigFactory.create('kovan');
+
+  return await new Maker(config);
+}
+
+async someOtherFunction() {
+  const maker = await setupFunction();
+  const cdp = await maker.openCdp();
+
+  return await cdp.lockEth();
+}
+```
+
+
 # Source code setup
 
 1. `git clone https://github.com/makerdao/makerdao-integration-poc`
@@ -72,30 +99,6 @@ Start the dev server using `npm start`, then open [http://localhost:9000](http:/
 - `npm run test:watch` - run all tests in watch mode
 - `npm run test:net` - launch a Ganache test chain and deploy MakerDAO's contracts on it
 
-# NPM package Setup 
-
-`npm install @makerdao/makerdao-exchange-integration`
-
-First, import the necessary modules in your JS code:
-
-`import { Maker, ConfigFactory } from '@makerdao/makerdao-exchange-integration';`
-
-Then create a connected instance of the Maker class and use it to call CDP methods, like you see in the JS snippet in the right panel.
-
-```javascript
-async setupFunction() {
-  const config = ConfigFactory.create('kovan');
-
-  return await new Maker(config);
-}
-
-async someOtherFunction() {
-  const maker = await setupFunction();
-  const cdp = await maker.openCdp();
-
-  return await cdp.lockEth();
-}
-```
 
 [npm]: https://img.shields.io/badge/npm-5.3.0-blue.svg
 [npm-url]: https://npmjs.com/
