@@ -72,7 +72,7 @@ Start the dev server using `npm start`, then open [http://localhost:9000](http:/
 - `npm run test:watch` - run all tests in watch mode
 - `npm run test:net` - launch a Ganache test chain and deploy MakerDAO's contracts on it
 
-# NPM Package Setup 
+# NPM package Setup 
 
 `npm install @makerdao/makerdao-exchange-integration`
 
