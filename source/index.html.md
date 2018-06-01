@@ -19,15 +19,29 @@ search: true
 [![tests][tests]][tests-url]
 [![coverage][cover]][cover-url]
 
-A toolkit for easy integration of MakerDAO smart contract functionality with 
-external platforms. 
+# MakerDAO Exchange Integration
 
-If you're a cryptocurrency exchange looking to add leveraged ETH positions through 
-distributed DAI lending to your platform, you're in the right place. 
+[![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 
-This library aims to support a wide range of platform architectures; from fully 
-decentralized with immediate on-chain settlement, to centralized exchange architectures 
-with internal settlement services.
+**MakerDAO Exchange Integration** is a JavaScript library that makes it easy to build applications on top of MakerDAO's platform of smart contracts. You can use Maker's contracts to open Collateralized Debt Positions, withdraw loans in Dai, trade tokens on OasisDEX, and more.
+
+The library features a pluggable, service-based architecture, which allows users maximal control when integrating the Maker functionality into existing infrastructures. It also includes convenient configuration presets for out-of-the-box usability, a powerful smart contract state inspector, and support for both front-end and back-end applications.
+
+Maker's entire suite of contracts will eventually be accessible through this library—including the DAO governance and the upcoming multi-collateral release—but functionality is limited in the current alpha version to the following areas:
+
+* Opening and shutting CDPs
+* Locking and unlocking collateral
+* Withdrawing and repaying Dai
+* Automated token conversions
+* Token contract functionality for WETH, PETH, MKR, Dai, and ETH
+* Buying and selling MKR and Dai with built-in DEX integration
+
+# Source code setup
+
+`git clone https://github.com/makerdao/makerdao-integration-poc`
+`npm install`
+
 
 ## Prerequisites
 
@@ -48,12 +62,9 @@ with internal settlement services.
 - [Jest](https://facebook.github.io/jest/docs/en/getting-started.html) (v20.0.4)
 - [Sass](http://sass-lang.com/guide)
 
-## Start Dev Server
+## Inspect contract state
 
-1. `git clone https://github.com/makerdao/makerdao-integration-poc`
-2. Run `npm install`
-3. Start the dev server using `npm start`
-3. Open [http://localhost:9000](http://localhost:9000)
+Start the dev server using `npm start`, then open [http://localhost:9000](http://localhost:9000)
 
 
 ## Commands
@@ -67,7 +78,7 @@ with internal settlement services.
 - `npm run test:watch` - run all tests in watch mode
 - `npm run test:net` - launch a Ganache test chain and deploy MakerDAO's contracts on it
 
-# Use Maker.js in Your Project 
+# NPM Package Setup 
 
 `npm install @makerdao/makerdao-exchange-integration`
 
