@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - npm-package-setup
+  - getting-started
   - maker
   - cdp
   - source-code-setup
@@ -36,6 +37,5 @@ Maker's entire suite of contracts will eventually be accessible through this lib
 
 [tests]: http://img.shields.io/travis/jluccisano/webpack-es6-boilerplate.svg
 [tests-url]: https://travis-ci.org/jluccisano/webpack-es6-boilerplate
-
 [cover]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate

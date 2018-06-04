@@ -1,24 +1,44 @@
-# NPM package setup 
+# Package Setup
 
-`npm install @makerdao/makerdao-exchange-integration`
-
-First, import the necessary modules in your JS code:
-
-`import { Maker, ConfigFactory } from '@makerdao/makerdao-exchange-integration';`
-
-Then create a connected instance of the Maker class and use it to call CDP methods, like you see in the JS snippet in the right panel.
+## NPM 
 
 ```javascript
-async setupFunction() {
-  const config = ConfigFactory.create('kovan');
+import {
+  Maker,
+  ConfigFactory
+} from '@makerdao/makerdao-exchange-integration';
 
-  return await new Maker(config);
-}
+// OR
 
-async someOtherFunction() {
-  const maker = await setupFunction();
-  const cdp = await maker.openCdp();
-
-  return await cdp.lockEth();
-}
+const {
+  Maker,
+  ConfigFactory
+} = require('@makerdao/makerdao-exchange-integration')
 ```
+
+The easiest way to install this package is with npm:
+
+`$ npm install @makerdao/makerdao-exchange-integration`
+
+Alternatively, this can be done using yarn:
+
+`$ yarn add @makerdao/makerdao-exchange-integration`
+
+Once installed, import the necessary modules into your project using import or require.
+
+## UMD
+
+```html
+<script src="./maker-exchange-integration.js" />
+
+<script> 
+var config = ConfigFactory.create('decentralized-oasis-without-proxies');
+var maker = new Maker(config);
+		
+maker.openCdp()
+  .then(cdp => cdp.getInfo())
+  .then(info => console.log(info));	
+</script>
+```
+
+This library is also accessible via a [UMD module](https://github.com/umdjs/umd).
