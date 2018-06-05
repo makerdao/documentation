@@ -12,6 +12,8 @@ includes:
   - getting-started
   - maker
   - cdp
+  - price-feed
+  - exchange
   - source-code-setup
 
 search: true
