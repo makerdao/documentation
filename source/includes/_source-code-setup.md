@@ -1,4 +1,4 @@
-# Source code setup
+# Source Code Setup
 
 1. `git clone https://github.com/makerdao/makerdao-integration-poc`
 2. `npm install`

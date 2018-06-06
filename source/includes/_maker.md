@@ -8,6 +8,8 @@ Once you've connected your instance of `maker` (following the instructions in th
 
 The service function can be used to access services that were injected into your instance of `maker`. The service must be in the list of available services you passed to `ConfigFactory`.
 
+*Note: see the `Custom Config Files` section further down for an example config file with a list of services*
+
 ```javascript
 const priceFeedService = maker.service('priceFeed');
 ```

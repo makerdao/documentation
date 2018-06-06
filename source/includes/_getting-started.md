@@ -12,14 +12,16 @@ When instantiating a `Maker` object, you must pass in a config. To make this eas
 
 The current presets are as follows:
 
-* `'koavn'`
+* `'kovan'`
   * Connects you to the Kovan Testnet using Infura
   * Signs transactions using an internal private key
 * `'decentralized-oasis-without-proxies'`
   * Connects you to a local testnet (eg Ganache) running at `http://127.1:2000`
   * Signs transactions using testnet-managed keys
 
-*Proxies are contracts that will let you perform multiple actions with a single transaction (eg `open` -> `lock` -> `draw`). This is a safer way to perform sequential actions and will be supported by this library.*
+*Note: refer to the `Custom Config Files` section further down for details on customizing the config file*
+
+*Side Note: Proxies are contracts that will let you perform multiple actions with a single transaction (eg `open` -> `lock` -> `draw`). This is a safer way to perform sequential actions and will be supported by this library.*
 
 
 ### Instantiation
@@ -38,7 +40,6 @@ Use that class to open a cdp and create a cdp object.
 
 `maker.openCdp()`
 
-*Note: refer to the `Service` section further down for details on service config*
 
 ## Example
 
