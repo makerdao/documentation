@@ -12,6 +12,8 @@ includes:
   - getting-started
   - maker
   - cdp
+  - price-feed
+  - exchange
   - web3-provider-config
   - source-code-setup
 
