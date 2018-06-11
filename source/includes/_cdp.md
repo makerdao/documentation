@@ -3,16 +3,24 @@
 Now that you've used `maker` to either open a new CDP or retrieve an existing one, you can use the returned `cdp` object to call functions on it.
 
 ## **getCdpId**
-* **Params:** none
-* **Returns:** promise (resolves to CDP ID)
-
-Use `cdp.getCdpId()` to retrieve the ID from a CDP object. You may need to use the ID as a parameter for other functions.
 
 ```javascript
 const id = await cdp.getCdpId();
 ```
 
+* **Params:** none
+* **Returns:** promise (resolves to CDP ID)
+
+Use `cdp.getCdpId()` to retrieve the ID from a CDP object. You may need to use the ID as a parameter for other functions.
+
+
 ## **getInfo**
+
+```javascript
+const info = await cdp.getInfo();
+const lockedPeth = info.ink;
+```
+
 * **Params:** none
 * **Returns:** promise (resolves to CDP info object)
 
@@ -25,10 +33,6 @@ const id = await cdp.getCdpId();
 
 Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
 
-```javascript
-const info = await cdp.getInfo();
-const lockedPeth = info.ink;
-```
 
 ## **getCollateralAmount**
 
