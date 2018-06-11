@@ -93,7 +93,7 @@ return await cdp.wipeDai('100');
 
 `cdp.wipeDai(dai)` sends Dai back to the CDP in order to repay some (or all) of its outstanding debt.
 
-*Note: CDPs accumulate MKR governance debt over their lifetime. This must be paid when wiping dai debt, and thus MKR must be acquired before caling this method.*
+*Note: CDPs accumulate MKR governance debt over their lifetime. This must be paid when wiping dai debt, and thus MKR must be acquired before calling this method.*
 
 ## **freePeth**
 
