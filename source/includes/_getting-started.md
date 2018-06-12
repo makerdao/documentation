@@ -2,19 +2,13 @@
 
 ### Config Factory
 
-```javascript
-// create a config from the 'kovan' preset
-
-const config = ConfigFactory.create('kovan');
-```
-
-When instantiating a `Maker` object, you must pass in a config. To make this easy, we have created a `ConfigFactory` which provides you with a few presets cofigs.
+When instantiating a `Maker` object, you must pass in a configuration preset.
 
 The current presets are as follows:
 
 * `'kovan'`
   * Connects you to the Kovan Testnet using Infura
-  * Signs transactions using an internal private key
+  * Signs transactions using a private key that you provide
 * `'decentralized-oasis-without-proxies'`
   * Connects you to a local testnet (eg Ganache) running at `http://127.1:2000`
   * Signs transactions using testnet-managed keys
@@ -27,7 +21,7 @@ The current presets are as follows:
 ### Instantiation
 
 ```javascript
-  const maker = new Maker(config);
+const maker = new Maker("kovan", { privateKey: process.env.KOVAN_PRIVATE_KEY });
 
   const cdp = await maker.openCdp();
 ```
@@ -45,13 +39,9 @@ Use that class to open a cdp and create a cdp object.
 
 
 ```javascript
-import { 
-  Maker, 
-  ConfigFactory 
-} from '@makerdao/makerdao-exchange-integration';
+import { Maker } from '@makerdao/makerdao-exchange-integration';
 
-const config = ConfigFactory.create('decentralized-oasis-without-proxies');
-const maker = new Maker(config);
+const maker = new Maker("kovan", { privateKey: process.env.KOVAN_PRIVATE_KEY });
 
 async openLockDraw() {
   cdp = await maker.openCdp();
