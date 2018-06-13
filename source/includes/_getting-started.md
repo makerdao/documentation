@@ -1,73 +1,54 @@
 # Getting Started
 
-### Config Factory
+## Installation
 
 ```javascript
-// create a config from the 'kovan' preset
+import Maker from '@makerdao/makerdao-exchange-integration';
+// or:
+const Maker = require('@makerdao/makerdao-exchange-integration');
+```
+Install the package with npm:
 
-const config = ConfigFactory.create('kovan');
+`npm install @makerdao/makerdao-exchange-integration`
+
+Once it's installed, import the module into your project as shown on the right.
+
+### UMD
+
+```html
+<script src="./maker-exchange-integration.js" />
+
+<script>
+var maker = new Maker('kovan', { privateKey: YOUR_PRIVATE_KEY });
+
+maker.openCdp()
+  .then(cdp => cdp.getInfo())
+  .then(info => console.log(info));
+</script>
 ```
 
-When instantiating a `Maker` object, you must pass in a config. To make this easy, we have created a `ConfigFactory` which provides you with a few presets cofigs.
+This library is also accessible as a [UMD module](https://github.com/umdjs/umd).
 
-The current presets are as follows:
-
-* `'kovan'`
-  * Connects you to the Kovan Testnet using Infura
-  * Signs transactions using an internal private key
-* `'decentralized-oasis-without-proxies'`
-  * Connects you to a local testnet (eg Ganache) running at `http://127.1:2000`
-  * Signs transactions using testnet-managed keys
-
-*Note: refer to the `Custom Config Files` section further down for details on customizing the config file*
-
-*Side Note: Proxies are contracts that will let you perform multiple actions with a single transaction (eg `open` -> `lock` -> `draw`). This is a safer way to perform sequential actions and will be supported by this library.*
-
-
-### Instantiation
+## Quick Example
 
 ```javascript
-  const maker = new Maker(config);
+import Maker from '@makerdao/makerdao-exchange-integration';
 
-  const cdp = await maker.openCdp();
-```
+const maker = new Maker("kovan", { privateKey: YOUR_PRIVATE_KEY });
 
-Gain access to the top-level API by creating a connected instance of the Maker class. 
-
-`new Maker(config)`
-
-Use that class to open a cdp and create a cdp object.
-
-`maker.openCdp()`
-
-
-## Example
-
-
-```javascript
-import { 
-  Maker, 
-  ConfigFactory 
-} from '@makerdao/makerdao-exchange-integration';
-
-const config = ConfigFactory.create('decentralized-oasis-without-proxies');
-const maker = new Maker(config);
-
-async openLockDraw() {
+async function openLockDraw() {
   cdp = await maker.openCdp();
 
   await cdp.lockEth('0.25');
   await cdp.drawDai('50');
-
 
   const info = await cdp.getInfo();
   console.log(info);
 }
 
 openLockDraw();
-}
 ```
 
-Using the `maker` and `cdp` APIs, the program shown on the right opens a cdp, locks 0.25 ETH into it, draws out 50 Dai, and then logs information about our newly opened position to the console.
-
-
+Using the [Maker](#maker) and [Cdp](#cdp) APIs, the code shown on the right
+opens a cdp, locks 0.25 ETH into it, draws out 50 Dai, and then logs information
+about the newly opened position to the console.

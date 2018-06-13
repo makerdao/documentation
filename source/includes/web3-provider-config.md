@@ -1,47 +1,6 @@
-# Custom Config Files
+# Configuration
 
-```javascript
-{
-  "global": {
-    "enableProxies": false
-  },
-
-  "services": {
-
-    "web3": [
-      "Web3Service",
-      {
-        "usePresetProvider": true,
-        "provider": {
-          "type": "INFURA",
-          "network": "kovan"
-          "infuraApiKey": 'ab...yz'
-        },
-        "privateKey": "0x..."
-      }
-    ],
-    "allowance": "AllowanceService",
-    "cdp": "EthereumCdpService",
-    "exchange": "OasisExchangeService",
-    "smartContract": "SmartContractService",
-    "token": "EthereumTokenService",
-    "conversionService": "TokenConversionService",
-    "gasEstimator": "GasEstimatorService",
-    "transactionManager": "TransactionManager",
-    "priceFeed": "PriceFeedService",
-
-    "timer": "TimerService",
-    "log": "ConsoleLogger"
-  }
-}
-```
-When creating a new Maker object, a Config file is passed in. Here is the config file created by ConfigFactory.create('kovan')
-
-Config files allow for mixing and matching of different implementations of services used by the library.
-
-They also allow users to pass in settings to certain services.
-
-## **Web3Service Settings**
+## Web3 settings
 
 ```javascript
 {
@@ -64,7 +23,7 @@ For example, these are the Web3Service settings for the "kovan" config file from
 
 Below are the different options that can be passed in to the Web3Service settings
 
-### **usePresetProvider**
+### usePresetProvider
 
 ```javascript
 "usePresetProvider": true
@@ -74,7 +33,7 @@ if marked true, the object obtained from `window.web3` (if there is one) will be
 
 Default value: false.
 
-### **statusTimerDelay**
+### statusTimerDelay
 
 ```javascript
 "statusTimerDelay": 2000
@@ -85,20 +44,19 @@ Number in milliseconds that represents how often the blockchain connection and a
 
 default value: 5000 (5 seconds)
 
-### **privateKey**
+### privateKey
 
 ```javascript
 privateKey: "0x..."
-
 ```
 private key used to sign all transactions.  If not provided, the first account available from the ethereum node will be used to sign transaction.
 
-### **Provider Type**
+### Provider Type
 
 ```javascript
 "provider": {
-      "type": "HTTP"
-  }
+  "type": "HTTP"
+}
 ```
 
 "INFURA": connect to an ethereum node via infura
@@ -107,40 +65,40 @@ private key used to sign all transactions.  If not provided, the first account a
 
 "HTTP": connect to an ethereum node via any arbitrary url
 
-### **Provider Network**
+### Provider Network
 
 ```javascript
 "provider": {
-      "network": "kovan"
-  }
+  "network": "kovan"
+}
 ```
 Name of ethereum network to use when using the "INFURA" provider type.  The Maker smart contracts are only deployed on mainnet and kovan (not ropsten or rinkeby)
 
 options: "mainnet" | "kovan"
 
-### **Provider URL**
+### Provider URL
 
 ```javascript
 "provider": {
-    type: "HTTP"
-    url: 'https://sai-service.makerdao.com/node'
-  }
+  type: "HTTP"
+  url: 'https://sai-service.makerdao.com/node'
+}
 
 ```
 url of node to connect.  Only used when using "HTTP" provider type.
 
-### **Infura API Key**
+### Infura API Key
 
 ```javascript
 "provider": {
-    type: "INFURA"
-    infuraApiKey: 'ab...yz'
-  }
+  type: "INFURA"
+  infuraApiKey: 'ab...yz'
+}
 
 ```
 String value of your Infura unique Access Token (the part after infura.io/ when accessing infura via https)
 
-### **Default Web3Service Settings**
+### Default Web3Service Settings
 
 ```javascript
 {
@@ -153,5 +111,3 @@ String value of your Infura unique Access Token (the part after infura.io/ when 
 ```
 
 if no settings are passed in to the Web3Service in the config json file, the default settings are used.  It connects to a node run by the Maker team at "https://sai-service.makerdao.com/node"
-
-
