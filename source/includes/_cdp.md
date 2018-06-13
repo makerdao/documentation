@@ -50,6 +50,66 @@ const lockedPeth = await cdp.getCollateralAmount();
 const daiDebt = await cdp.getDebtAmount();
 ```
 
+## **getCollateralizationRatio**
+* **Params:** none
+* **Returns:** promise (resolves to the collateralization ratio)
+
+`cdp.getCollateralizationRatio()` returns the USD value of the collateral in the CDP divided by the amount of Dai debt for the CDP.
+
+```javascript
+const ratio = await cdp.getCollateralizationRatio();
+```
+
+## **getLiquidationPriceEthUSD**
+* **Params:** none
+* **Returns:** promise (resolves to the liquidation price)
+
+`cdp.getLiquidationPriceEthUSD()` returns the price of Ether in USD that causes the CDP to become unsafe (able to be liquidated), all other factors constant.
+
+```javascript
+const ratio = await cdp.getLiquidationPriceEthUSD();
+```
+
+## **isSafe**
+* **Params:** none
+* **Returns:** promise (resolves to boolean)
+
+`cdp.isSafe()` returns true if the cdp is safe, that is, ...[TODO] make sure target price is properly included in liq. coll. calculations
+
+```javascript
+const ratio = await cdp.isSafe();
+```
+
+## **getCollateralAmountInUSD**
+* **Params:** none
+* **Returns:** promise (resolves to collateral amount)
+
+`cdp.getCollateralAmountInUSD()` returns the USD value of the collateral in the CDP
+
+```javascript
+const collateral = await cdp.getCollateralAmountInUSD();
+```
+
+## **getCollateralAmountInEth**
+* **Params:** none
+* **Returns:** promise (resolves to collateral amount)
+
+`cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Ether
+
+```javascript
+const collateral = await cdp.getCollateralAmountInEth();
+```
+
+## **getCollateralAmountInPeth**
+* **Params:** none
+* **Returns:** promise (resolves to collateral amount)
+
+`cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Peth
+
+```javascript
+const collateral = await cdp.getCollateralAmountInPeth();
+```
+
 ## **lockEth**
 * **Params:** amount to lock in the CDP (in ETH, as string)
 * **Returns:** promise (resolves to `transactionHybrid`)
