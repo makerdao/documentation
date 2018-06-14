@@ -33,16 +33,27 @@ const lockedPeth = info.ink;
 
 Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
 
-## **getDebtAmount**
+## **getDebtValueInDai**
 
 ```javascript
-const daiDebt = await cdp.getDebtAmount();
+const daiDebt = await cdp.getDebtValueInDai();
 ```
 
 * **Params:** none
 * **Returns:** promise (resolves to the amount of outstanding debt in Dai)
 
-`cdp.getDebtAmount()` returns the amount of Dai that has been borrowed against the collateral in the CDP.
+`cdp.getDebtValueDai()` returns the amount of Dai that has been borrowed against the collateral in the CDP.
+
+## **getDebtValueInUSD**
+
+```javascript
+const debtInUSD = await cdp.getDebtValueInUSD();
+```
+
+* **Params:** none
+* **Returns:** promise (resolves to the amount of outstanding debt in USD)
+
+`cdp.getDebtValueInUSD()` returns the value of the borrowed Dai in USD terms.  This will return the same value as `cdp.getDebtValueInDai` as long as the Target Price is 1.
 
 ## **getCollateralizationRatio**
 

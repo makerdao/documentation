@@ -7,6 +7,16 @@ Retrieve the Ethereum CDP Service through Maker.service('ethereumCdp').
 
 The EthereumCdp exposes the risk parameter information for the CDP type whose collateral is Ether (in single-collateral Dai, this is the only CDP Type)
 
+## **getLiquidationRatio**
+
+```javascript
+const ratio = await ethCdp.getLiquidationRatio();
+```
+
+* **Params:** none
+* **Returns:** promise (resolves to liquidation ratio)
+
+`getLiquidationPenalty()` returns a decimal representation of the liquidation penalty, e.g. 1.5
 
 ## **getLiquidationPenalty**
 
