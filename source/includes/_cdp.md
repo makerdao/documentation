@@ -33,19 +33,6 @@ const lockedPeth = info.ink;
 
 Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
 
-
-## **getCollateralAmount**
-
-```javascript
-const lockedPeth = await cdp.getCollateralAmount();
-```
-
-* **Params:** none
-* **Returns:** promise (resolves to locked amount in PETH)
-
-`cdp.getCollateralAmount()` returns the amount of locked collateral in the CDP.
-
-
 ## **getDebtAmount**
 
 ```javascript
@@ -57,79 +44,78 @@ const daiDebt = await cdp.getDebtAmount();
 
 `cdp.getDebtAmount()` returns the amount of Dai that has been borrowed against the collateral in the CDP.
 
-
-## **lockEth**
-
-```javascript
-return await cdp.lockEth('0.1');
-```
 ## **getCollateralizationRatio**
-* **Params:** none
-* **Returns:** promise (resolves to the collateralization ratio)
-
-`cdp.getCollateralizationRatio()` returns the USD value of the collateral in the CDP divided by the amount of Dai debt for the CDP.
 
 ```javascript
 const ratio = await cdp.getCollateralizationRatio();
 ```
 
-## **getLiquidationPriceEthUSD**
 * **Params:** none
-* **Returns:** promise (resolves to the liquidation price)
+* **Returns:** promise (resolves to the collateralization ratio)
 
-`cdp.getLiquidationPriceEthUSD()` returns the price of Ether in USD that causes the CDP to become unsafe (able to be liquidated), all other factors constant.
+`cdp.getCollateralizationRatio()` returns the USD value of the collateral in the CDP divided by the USD value of the Dai debt for the CDP, e.g. 2.5
+
+## **getLiquidationPriceEthUSD**
 
 ```javascript
 const ratio = await cdp.getLiquidationPriceEthUSD();
 ```
 
-## **isSafe**
-
 * **Params:** none
-* **Returns:** promise (resolves to boolean)
+* **Returns:** promise (resolves to the liquidation price)
 
-`cdp.isSafe()` returns true if the cdp is safe, that is, ...[TODO] make sure target price is properly included in liq. coll. calculations
+`cdp.getLiquidationPriceEthUSD()` returns the price of Ether in USD that causes the CDP to become unsafe (able to be liquidated), all other factors constant.
 
-```javascript
-const ratio = await cdp.isSafe();
-```
-
-## **getCollateralAmountInUSD**
-
-* **Params:** none
-* **Returns:** promise (resolves to collateral amount)
-
-`cdp.getCollateralAmountInUSD()` returns the USD value of the collateral in the CDP
+## **getCollateralValueInUSD**
 
 ```javascript
 const collateral = await cdp.getCollateralAmountInUSD();
 ```
 
-## **getCollateralAmountInEth**
+* **Params:** none
+* **Returns:** promise (resolves to collateral amount)
+
+`cdp.getCollateralAmountInUSD()` returns value of the collateral in the CDP in terms of USD
+
+## **getCollateralValueInEth**
+
+```javascript
+const collateral = await cdp.getCollateralAmountInEth();
+```
 
 * **Params:** none
 * **Returns:** promise (resolves to collateral amount)
 
 `cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Ether
 
-```javascript
-const collateral = await cdp.getCollateralAmountInEth();
-```
+## **getCollateralValueInPeth**
 
-## **getCollateralAmountInPeth**
+```javascript
+const collateral = await cdp.getCollateralAmountInPeth();
+```
 
 * **Params:** none
 * **Returns:** promise (resolves to collateral amount)
 
 `cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Peth
 
+## **isSafe**
+
 ```javascript
-const collateral = await cdp.getCollateralAmountInPeth();
+const ratio = await cdp.isSafe();
 ```
+
+* **Params:** none
+* **Returns:** promise (resolves to boolean)
+
+`cdp.isSafe()` returns true if the cdp is safe, that is, ...[TODO] make sure target price is properly included in liq. coll. calculations
 
 ## **lockEth**
 
->>>>>>> 00b3fe9b20bbaa27d02c7833640d2560befdf506
+```javascript
+return await cdp.lockEth('0.1');
+```
+
 * **Params:** amount to lock in the CDP (in ETH, as string)
 * **Returns:** promise (resolves to `transactionHybrid`)
 

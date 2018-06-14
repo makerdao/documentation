@@ -12,7 +12,9 @@ includes:
   - maker
   - cdp
   - price-feed
+  - cdp-type-parameters
   - exchange
+  - system-status
   - advanced-configuration
   - source-code-setup
 
