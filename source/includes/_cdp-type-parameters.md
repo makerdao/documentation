@@ -1,9 +1,9 @@
 # Ether CDP Service
 
 ```javascript
-const ethCdp = maker.service('ethereumCdp');
+const ethCdp = maker.service('cdp');
 ```
-Retrieve the Ethereum CDP Service through Maker.service('ethereumCdp').
+Retrieve the Ethereum CDP Service through Maker.service('cdp').
 
 The EthereumCdp exposes the risk parameter information for the CDP type whose collateral is Ether (in single-collateral Dai, this is the only CDP Type)
 
