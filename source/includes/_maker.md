@@ -67,6 +67,9 @@ const maker = new Maker('http', {
 * `web3.usePresetProvider`
   * If `true`, the value `window.web3` (if there is one) will be used as the Provider, instead of creating a new one. For example, this should be true if the library is used in a browser and it should use MetaMask.
   * Default value: `false`
+* `overrideMetamask`
+  * Same as above, but with simpler terminology.
+  * Default value: `true`
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
 
