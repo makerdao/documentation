@@ -119,7 +119,7 @@ const ratio = await cdp.isSafe();
 * **Params:** none
 * **Returns:** promise (resolves to boolean)
 
-`cdp.isSafe()` returns true if the cdp is safe, that is, ...[TODO] make sure target price is properly included in liq. coll. calculations
+`cdp.isSafe()` returns true if the cdp is safe, that is if the USD value of the collateral in the CDP is greater than or equal to USD value of the debt in the CDP multiplied by the liquidation ratio.
 
 ## **lockEth**
 
