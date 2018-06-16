@@ -3,7 +3,7 @@
 ```javascript
 const ethCdp = maker.service('cdp');
 ```
-To access system status information, retrieve the Ethereum CDP Service through Maker.service('cdp').
+To access system status information, retrieve the ETH CDP Service through Maker.service('cdp').
 
 ## **getSystemCollateralization**
 
