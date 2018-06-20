@@ -16,6 +16,7 @@ includes:
   - exchange
   - system-status
   - events
+  - transaction
   - advanced-configuration
   - source-code-setup
 
