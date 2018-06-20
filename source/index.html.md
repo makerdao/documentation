@@ -15,6 +15,7 @@ includes:
   - cdp-type-parameters
   - exchange
   - system-status
+  - events
   - advanced-configuration
   - source-code-setup
 
