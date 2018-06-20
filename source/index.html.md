@@ -11,7 +11,7 @@ includes:
   - getting-started
   - maker
   - cdp
-  - price-feed
+  - price
   - cdp-type-parameters
   - exchange
   - system-status

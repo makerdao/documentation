@@ -76,7 +76,7 @@ const maker = new Maker('http', {
 ## **service**
 
 ```javascript
-const priceFeedService = maker.service('priceFeed');
+const priceService = maker.service('price');
 ```
 
 * **Params:** service (string)
