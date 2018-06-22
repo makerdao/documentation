@@ -3,7 +3,7 @@
 
 ### Want to read the docs?
 
-Go to [makerdao.com/documentation](makerdao.com/documentation).
+Go to [makerdao.com/documentation](https://makerdao.com/documentation).
 
 ### Want to edit the docs?
 
