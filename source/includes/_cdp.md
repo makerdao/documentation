@@ -27,9 +27,9 @@ const lockedPeth = info.ink;
 `cdp.getInfo()` will return a few distinct properties of the CDP:
 
 * lad: The Ethereum address associated with the owner of the CDP
-* ink: Amount of PETH collateral locked in the CDP
-* art: Outstanding "normalized" debt (tax only)
-* ire: Outstanding "normalized" debt
+* ink: Amount of PETH collateral locked in the CDP (this returns the same value as `cdp.getCollateralValueInPeth()`)
+* art: Outstanding "normalized" debt - tax only (this is not the actual debt.  Use one of the getDebtValue functions for that)
+* ire: Outstanding "normalized" debt (this is not the actual total amount owed.  Use one of the getDebtValue and getMkrFee functions for that)
 
 Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
 
