@@ -3,13 +3,14 @@
 
 ### Want to read the docs?
 
-Go to [makerdao.com/documentation](makerdao.com/documentation).
+Go to [makerdao.com/documentation](https://makerdao.com/documentation).
 
 ### Want to edit the docs?
 
 Real quick instructions:
 * [Write Markdown](https://github.com/lord/slate/wiki/Markdown-Syntax) in `source/index.html.md` and/or a file in `source/includes`.
-* [Publish your changes](https://github.com/lord/slate/wiki/Deploying-Slate).
+* View your changes locally: `bundle exec middleman server`.
+* [Publish your changes](https://github.com/lord/slate/wiki/Deploying-Slate): Push to origin, then run `./deploy.sh`.
 
 ----
 

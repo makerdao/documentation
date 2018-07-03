@@ -11,10 +11,12 @@ includes:
   - getting-started
   - maker
   - cdp
-  - price-feed
+  - price
   - cdp-type-parameters
   - exchange
   - system-status
+  - events
+  - transaction
   - advanced-configuration
   - source-code-setup
 
