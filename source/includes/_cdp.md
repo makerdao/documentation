@@ -27,9 +27,9 @@ const lockedPeth = info.ink;
 `cdp.getInfo()` will return a few distinct properties of the CDP:
 
 * lad: The Ethereum address associated with the owner of the CDP
-* ink: Amount of collateral locked in the CDP
-* art: Outstanding normalized debt (tax only)
-* ire: Outstanding normalized debt
+* ink: Amount of PETH collateral locked in the CDP
+* art: Outstanding "normalized" debt (tax only)
+* ire: Outstanding "normalized" debt
 
 Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
 
@@ -54,6 +54,28 @@ const debtInUSD = await cdp.getDebtValueInUSD();
 * **Returns:** promise (resolves to the amount of outstanding debt in USD)
 
 `cdp.getDebtValueInUSD()` returns the value of the borrowed Dai in USD terms.  This will return the same value as `cdp.getDebtValueInDai` as long as the Target Price is 1.
+
+## **getMkrFeeInUSD**
+
+```javascript
+const feeInUSD = await cdp.getMkrFeeInUSD();
+```
+
+* **Params:** none
+* **Returns:** promise (resolves to the value of the accrued governance fee in USD)
+
+`cdp.getMkrFeeInUSD()` returns the USD value of the accrued governance fee.
+
+## **getMkrFeeInMkr**
+
+```javascript
+const feeInMkr = await cdp.getMkrFeeInMkr();
+```
+
+* **Params:** none
+* **Returns:** promise (resolves to the value of the accrued governance fee in MKR)
+
+`cdp.getMkrFeeInMkr()` returns the amount of MKR token needed to pay off the accrued governance fee
 
 ## **getCollateralizationRatio**
 
@@ -80,35 +102,35 @@ const ratio = await cdp.getLiquidationPriceEthUSD();
 ## **getCollateralValueInUSD**
 
 ```javascript
-const collateral = await cdp.getCollateralAmountInUSD();
+const collateral = await cdp.getCollateralValueInUSD();
 ```
 
 * **Params:** none
 * **Returns:** promise (resolves to collateral amount)
 
-`cdp.getCollateralAmountInUSD()` returns value of the collateral in the CDP in terms of USD
+`cdp.getCollateralValueInUSD()` returns value of the collateral in the CDP in terms of USD
 
 ## **getCollateralValueInEth**
 
 ```javascript
-const collateral = await cdp.getCollateralAmountInEth();
+const collateral = await cdp.getCollateralValueInEth();
 ```
 
 * **Params:** none
 * **Returns:** promise (resolves to collateral amount)
 
-`cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Ether
+`cdp.getCollateralValueInEth()` returns the value of the collateral in the CDP in terms of Ether
 
 ## **getCollateralValueInPeth**
 
 ```javascript
-const collateral = await cdp.getCollateralAmountInPeth();
+const collateral = await cdp.getCollateralValueInPeth();
 ```
 
 * **Params:** none
 * **Returns:** promise (resolves to collateral amount)
 
-`cdp.getCollateralAmountInUSD()` returns the value of the collateral in the CDP in terms of Peth
+`cdp.getCollateralValueInPeth()` returns the value of the collateral in the CDP in terms of Peth
 
 ## **isSafe**
 
