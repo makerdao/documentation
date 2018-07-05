@@ -39,8 +39,8 @@ const maker = new Maker("kovan", { privateKey: YOUR_PRIVATE_KEY });
 async function openLockDraw() {
   cdp = await maker.openCdp();
 
-  await cdp.lockEth('0.25');
-  await cdp.drawDai('50');
+  await cdp.lockEth(0.25);
+  await cdp.drawDai(50);
 
   const info = await cdp.getInfo();
   console.log(info);

@@ -108,3 +108,28 @@ const cdp = await maker.getCdp(614);
 * **Returns:** promise (resolves to CDP object)
 
 `maker.getCdp(id)` creates a CDP object for an existing CDP. The CDP object can then be used to interact with your CDP.
+
+## Units
+
+```javascript
+import Maker from '@makerdao/makerdao-exchange-integration';
+const { MKR, DAI, ETH, WETH, PETH } = Maker;
+
+// These are all identical:
+
+// each method has a default type
+cdp.lockEth(0.25);
+cdp.lockEth('0.25');
+
+// you can pass in a currency unit instance
+cdp.lockEth(ETH(0.25));
+cdp.lockEth(ETH.wei(250000000000000000));
+
+// you can pass the unit as a second argument
+cdp.lockEth(0.25, ETH);
+cdp.lockEth(250000000000000000, ETH.wei);
+```
+
+Methods that take numerical values as input can also take instances of token
+classes that the library provides. These are useful for managing precision,
+keeping track of units, and passing in wei values.
