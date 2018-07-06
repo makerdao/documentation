@@ -146,7 +146,9 @@ const ratio = await cdp.isSafe();
 ## **lockEth**
 
 ```javascript
-return await cdp.lockEth(myWeiAmount, ETH.wei);
+return await cdp.lockEth(10000000000000000000, ETH.wei);
+// or equivalently
+return await cdp.lockEth(100, ETH);
 ```
 
 * **Params:** amount to lock in the CDP, in units defined by the price service.
@@ -158,7 +160,9 @@ return await cdp.lockEth(myWeiAmount, ETH.wei);
 ## **drawDai**
 
 ```javascript
-return await cdp.drawDai(100);
+return await cdp.drawDai(10000000000000000000, DAI.wei);
+// or equivalently
+return await cdp.drawDai(100, DAI);
 ```
 
 * **Params:** amount to draw (in Dai, as string)
@@ -170,11 +174,9 @@ return await cdp.drawDai(100);
 ## **wipeDai**
 
 ```javascript
-return await cdp.wipeDai(100);
-// or 
-return await cdp.wipeDai(myWeiAmount, ETH.wei);
-// or
-return await cdp.wipeDai(myDaiAmount, ETH.dai);
+return await cdp.wipeDai(10000000000000000000, DAI.wei);
+// or equivalently
+return await cdp.wipeDai(100, DAI);
 ```
 
 * **Params:** amount to repay (in Dai, as string)
@@ -187,9 +189,9 @@ return await cdp.wipeDai(myDaiAmount, ETH.dai);
 ## **freePeth**
 
 ```javascript
-return await cdp.freePeth(myWeiAmount, ETH.wei);
-// or
-return await cdp.freePeth(myPethAmount, ETH.peth);
+return await cdp.freePeth(100, PETH);
+// or equivalently
+return await cdp.freePeth(10000000000000000000, PETH.wei);
 ```
 
 * **Params:** amount of Peth collateral to free from the CDP, in units defined by the price service.
