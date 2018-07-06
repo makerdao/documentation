@@ -146,10 +146,10 @@ const ratio = await cdp.isSafe();
 ## **lockEth**
 
 ```javascript
-return await cdp.lockEth('0.1');
+return await cdp.lockEth(myWeiAmount, ETH.wei);
 ```
 
-* **Params:** amount to lock in the CDP (in ETH, as string)
+* **Params:** amount to lock in the CDP, in units defined by the price service.
 * **Returns:** promise (resolves to `transactionHybrid`)
 
 `cdp.lockEth(eth)` abstracts the token conversions needed to lock collateral in a CDP. It first converts the ETH to WETH, then converts the WETH to PETH, then locks the PETH in the CDP.
@@ -158,7 +158,7 @@ return await cdp.lockEth('0.1');
 ## **drawDai**
 
 ```javascript
-return await cdp.drawDai('100');
+return await cdp.drawDai(100);
 ```
 
 * **Params:** amount to draw (in Dai, as string)
@@ -170,7 +170,11 @@ return await cdp.drawDai('100');
 ## **wipeDai**
 
 ```javascript
-return await cdp.wipeDai('100');
+return await cdp.wipeDai(100);
+// or 
+return await cdp.wipeDai(myWeiAmount, ETH.wei);
+// or
+return await cdp.wipeDai(myDaiAmount, ETH.dai);
 ```
 
 * **Params:** amount to repay (in Dai, as string)
@@ -183,10 +187,12 @@ return await cdp.wipeDai('100');
 ## **freePeth**
 
 ```javascript
-return await cdp.freePeth('0.1');
+return await cdp.freePeth(myWeiAmount, ETH.wei);
+// or
+return await cdp.freePeth(myPethAmount, ETH.peth);
 ```
 
-* **Params:** amount to withdraw (in PETH, as string)
+* **Params:** amount of Peth collateral to free from the CDP, in units defined by the price service.
 * **Returns:** promise (resolves to `transactionHybrid`)
 
 `cdp.freePeth(peth)` withdraws the specified amount of PETH and returns it to the owner's address. As such, the contract will only allow you to free PETH that's locked in excess of 150% of the CDP's outstanding debt.

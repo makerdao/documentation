@@ -36,7 +36,7 @@ Get the current USD price of PETH (pooled ethereum) according to the Maker price
 ## setEthPrice
 
 ```javascript
-await price.setEthPrice('475.00');
+await price.setEthPrice(475);
 ```
 
 Set the current USD price of ETH. 
@@ -46,7 +46,7 @@ This requires the necessary permissions and will only be useful in a testing env
 ## setMkrPrice
 
 ```javascript
-await price.setMkrPrice('950.00');
+await price.setMkrPrice(950.00);
 ```
 
 Set the current USD price of the governance token MKR. 
