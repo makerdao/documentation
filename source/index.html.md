@@ -19,6 +19,7 @@ includes:
   - transaction
   - advanced-configuration
   - source-code-setup
+  - new-service
 
 search: true
 ---

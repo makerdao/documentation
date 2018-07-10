@@ -76,7 +76,7 @@ Event Name            | Payload
 ```javascript
 cdp.on('DEBT', eventObj => {
     const { dai } = eventObj.payload;
-    console.log('Your cdp is now has a dai debt of', dai);
+    console.log('Your cdp now has a dai debt of', dai);
 })
 ```
 
