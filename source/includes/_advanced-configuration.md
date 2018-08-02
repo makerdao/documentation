@@ -1,7 +1,7 @@
 # Advanced Configuration
 
 ```javascript
-const customMaker = new Maker('http', {
+const customMaker = Maker.create('http', {
   log: 'BunyanLogger',
   exchange: 'ZeroExExchangeService',
   web3: [

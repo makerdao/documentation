@@ -19,7 +19,7 @@ Once it's installed, import the module into your project as shown on the right.
 <script src="./maker-exchange-integration.js" />
 
 <script>
-var maker = new Maker('kovan', { privateKey: YOUR_PRIVATE_KEY });
+var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
 
 maker.openCdp()
   .then(cdp => cdp.getInfo())
@@ -34,7 +34,7 @@ This library is also accessible as a [UMD module](https://github.com/umdjs/umd).
 ```javascript
 import Maker from '@makerdao/makerdao-exchange-integration';
 
-const maker = new Maker("kovan", { privateKey: YOUR_PRIVATE_KEY });
+const maker = Maker.create("kovan", { privateKey: YOUR_PRIVATE_KEY });
 
 async function openLockDraw() {
   cdp = await maker.openCdp();

@@ -17,7 +17,7 @@ Once it's installed, import the module into your project.
 <script src="./maker-exchange-integration.js" />
 
 <script>
-var maker = new Maker('kovan', { privateKey: YOUR_PRIVATE_KEY });
+var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
 
 maker.openCdp()
   .then(cdp => cdp.getInfo())

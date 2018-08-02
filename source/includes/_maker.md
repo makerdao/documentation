@@ -2,19 +2,19 @@
 
 ## Presets
 ```javascript
-const makerHttp = new Maker('http', {
+const makerHttp = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY,
   url: 'https://sai-service.makerdao.com/node'
 });
 
-const makerKovan = new Maker('kovan', {
+const makerKovan = Maker.create('kovan', {
   privateKey: YOUR_PRIVATE_KEY,
   provider: {
     infuraApiKey: YOUR_INFURA_API_KEY
   }
 });
 
-const makerTest = new Maker('test');
+const makerTest = Maker.create('test');
 ```
 
 When instantiating a `Maker` object, you pass in the name of a configuration preset
@@ -34,7 +34,7 @@ sign transactions using testnet-managed keys.
 ## Options
 
 ```javascript
-const maker = new Maker('http', {
+const maker = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY, // '0xabc...'
   url: 'https://sai-service.makerdao.com/node',
   provider: {
