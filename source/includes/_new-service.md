@@ -1,14 +1,16 @@
 # Adding a New Service
 
-A service is a Javascript class that contains public methods.  It can depend on other services through a built-in dependency injection framework, and can also be configured through the Maker config file / config options.
+You can take advantage of the pluggable architecture of this library by choosing different implementations for services, and/or adding new service roles altogether.  A service is just a Javascript class that inherits from either `PublicService, PrivateService, or LocalService`, and contains public method(s).  It can depend on other services through a built-in dependency injection framework, and can also be configured through the Maker config file / config options.
 
 ## Steps to add a new service
 
 Here are the steps to add a new service called `ExampleService` to MakerJS:
 
-1. In the `src` directory, create an `ExampleService.js` file in one of the subdirectories.  Also create a corresponding `ExampleService.spec.js` file in the `test` directory
-2. In `src/config/DefaultServiceProvider.js`, import `ExampleService.js` and add it to the `_services` array
-3. Create a class called `ExampleService` in `ExampleService.js`
+* (1) In the `src` directory, create an `ExampleService.js` file in one of the subdirectories.
+
+* (2) In `src/config/DefaultServiceProvider.js`, import `ExampleService.js` and add it to the `_services` array
+
+* (3) Create a class called `ExampleService` in `ExampleService.js`
 
 ```javascript
 //example code in ExampleService.js for steps 3-6
@@ -24,47 +26,58 @@ export default class ExampleService extends PublicService {
 	}
 ```
 
-4. The service must `extend` one of: 
+* (4) The service must `extend` one of: 
 	* `PrivateService` - requires both a network connection and authentication
 	* `PublicService` - requires just a network connection
 	* `LocalService` - requires neither
 
 	See the `Service Lifecycle` section below for more info
-5. In the constructor, call the parent class's constructor with the following arguments:
-	1. The name of the service.  This is how the service can be referenced by other services
-	2. An array of the names of services to depend on
-6. Add the necessary public methods
+
+* (5) In the constructor, call the parent class's constructor with the following arguments:
+	* The name of the service.  This is how the service can be referenced by other services
+	* An array of the names of services to depend on
+
+* (6) Add the necessary public methods
 
 ```javascript
-//example code in ExampleService.spec.js for step 7
-import { buildTestService } from '../helpers/serviceBuilders';
+//example code in ExampleService.spec.js for step 8
+import Maker from '../../src/index';
 
-//option 1: using buildTestService()
-test('test the example service', async () => {
-  const exampleService = buildTestService('example', {example: "ExampleService" });
-  testService.test(); //logs "test"
-});
-
-//option 2: using the Maker object
-test('test the example service', async () => {
-  const customMaker = new Maker('http', {example: "ExampleService"});
+//step 8: a new service role ('example') is used
+test('test 1', async () => {
+  const maker = Maker.create('http', {example: "ExampleService"});
   const exampleService = customMaker.service('example');
-  exampleService.test(); //console.logs "test"
+  exampleService.test(); //logs "test"
+});
+
+//step 8: a custom service replaces a default service (Web3)
+test('test 2', async () => {
+  const maker = Maker.create('http', {web3: "MyCustomWeb3Service"});
+  const mycustomWeb3Service = maker.service('web3');
 });
 ```
 
-7. Write a test in the test file.  You can either build a Maker object that uses your service, or use the `buildTestService` method found in `test/helpers/serviceBuilders` to only build the `ExampleSerivce`
-8. (Optional) Implement the relevant service lifecycle functions (`initialize()`, `connect()`, and `authenticate()`).  See the `Service Lifecycle` section below for more info
+* (7) If you're service will be used to replace a default service (the full list of default service roles can be found in `src/config/ConfigFactory`), then skip this step.  Otherwise, you'll need to add your new service role (e.g. `"example"`) to the `ServiceRoles` array in `src/config/ConfigFactory`.
+
+* (8) Create a corresponding `ExampleService.spec.js` file in the `test` directory.  Write a test in the test file that creates a Maker object using your service.
+
+* (9) (Optional) Implement the relevant service lifecycle functions (`initialize()`, `connect()`, and `authenticate()`).  See the `Service Lifecycle` section below for more info
 
 ```javascript
-//example configuration for step 8
-const maker = new Maker('test', {
-	example: {
-	exampleSetting: true
-	}
-});
+//step 10: in ExampleService.spec.js
+const maker = Maker.create('http', {example: ["ExampleService", {
+    exampleSetting: "this is a configuration setting"
+  }]});
+
+//step 10: accessing configuration settings in ExampleService.js
+initialize(settings){
+  if(settings.exampleSetting){
+    this.get('log').info(settings.exampleSetting);
+  }
+}
 ```
-9. (Optional) Allow for configuration.  Service-specific settings can be passed into a service by the Maker config file or config options.  These service-specific settings can then be accessed from inside a service as the parameter passed into the `initialize` function (see the `Service Lifecycle` section below)
+
+* (10) (Optional) Allow for configuration.  Service-specific settings can be passed into a service by the Maker config file or config options.  These service-specific settings can then be accessed from inside a service as the parameter passed into the `initialize` function (see the `Service Lifecycle` section below)
 
 ## Service Lifecycle
 The three kinds of services mentioned in step 4 above follow the following state machine diagrams in the picture below.
@@ -82,7 +95,8 @@ To specify what initializing, connecting and authenticating entails, implement t
 ![alt text](../images/statemachine.png)
 
 ```javascript
-const exampleService = buildTestService('example', {example: "ExampleService" });
+const maker = Maker.create('http', {example: "ExampleService"});
+const exampleService = customMaker.service('example');
 
 //wait for example service and its dependencies to initialize
 await exampleService.manager().initialize();
@@ -97,8 +111,6 @@ await exampleService.manager().authenticate();
 exampleService.manager().onConnected(()=>{
 	/*executed after connected*/
 });
-
-const maker = new Maker('http', {example: "ExampleService"});
 
 //wait for all services used by the maker object to authenticate
 maker.authenticate();
@@ -127,7 +139,7 @@ this.get('event').emit('web3/INITIALIZED', {
 });
 ```
 
-Another way to an add an event is to manually emit an event using ther event service's `emit` function.  For example, when the Web3Service initializes, it emits an event that contains info about the provider.
+Another way to an add an event is to manually emit an event using the event service's `emit` function.  For example, when the Web3Service initializes, it emits an event that contains info about the provider.
 
 ```javascript
 //in the constructor in the Cdp.js

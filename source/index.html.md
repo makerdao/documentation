@@ -17,7 +17,6 @@ includes:
   - system-status
   - events
   - transaction
-  - advanced-configuration
   - source-code-setup
   - new-service
 
