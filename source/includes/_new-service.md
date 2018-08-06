@@ -57,7 +57,7 @@ test('test 2', async () => {
 });
 ```
 
-* (7) If you're service will be used to replace a default service (the full list of default service roles can be found in `src/config/ConfigFactory`),  then skip this step.  Otherwise, you'll need to add your new service role (e.g. `"example"`) to the `ServiceRoles` array in `src/config/ConfigFactory`.
+* (7) If your service will be used to replace a default service (the full list of default service roles can be found in `src/config/ConfigFactory`),  then skip this step.  Otherwise, you'll need to add your new service role (e.g. `"example"`) to the `ServiceRoles` array in `src/config/ConfigFactory`.
 
 * (8) Create a corresponding `ExampleService.spec.js` file in the `test` directory.  Write a test in the test file that creates a Maker object using your service.
 
