@@ -112,7 +112,7 @@ const cdp = await maker.getCdp(614);
 ## Units
 
 ```javascript
-import Maker from '@makerdao/makerdao-exchange-integration';
+import Maker from '@makerdao/dai';
 const { MKR, DAI, ETH, WETH, PETH } = Maker;
 
 // These are all identical:

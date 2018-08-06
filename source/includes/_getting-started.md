@@ -3,20 +3,20 @@
 ## Installation
 
 ```javascript
-import Maker from '@makerdao/makerdao-exchange-integration';
+import Maker from '@makerdao/dai';
 // or:
-const Maker = require('@makerdao/makerdao-exchange-integration');
+const Maker = require('@makerdao/dai');
 ```
 Install the package with npm:
 
-`npm install @makerdao/makerdao-exchange-integration`
+`npm install @makerdao/dai`
 
 Once it's installed, import the module into your project as shown on the right.
 
 ### UMD
 
 ```html
-<script src="./maker-exchange-integration.js" />
+<script src="./dai.js" />
 
 <script>
 var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
@@ -32,7 +32,7 @@ This library is also accessible as a [UMD module](https://github.com/umdjs/umd).
 ## Quick Example
 
 ```javascript
-import Maker from '@makerdao/makerdao-exchange-integration';
+import Maker from '@makerdao/dai';
 
 const maker = Maker.create("kovan", { privateKey: YOUR_PRIVATE_KEY });
 

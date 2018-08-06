@@ -24,7 +24,7 @@ export default class ExampleService extends PublicService {
 	}
 ```
 
-4. The service must `extend` one of: 
+4. The service must `extend` one of:
 	* `PrivateService` - requires both a network connection and authentication
 	* `PublicService` - requires just a network connection
 	* `LocalService` - requires neither
@@ -47,7 +47,7 @@ test('test the example service', async () => {
 
 //option 2: using the Maker object
 test('test the example service', async () => {
-  const customMaker = new Maker('http', {example: "ExampleService"});
+  const customMaker = Maker.create('http', {example: "ExampleService"});
   const exampleService = customMaker.service('example');
   exampleService.test(); //console.logs "test"
 });
@@ -58,7 +58,7 @@ test('test the example service', async () => {
 
 ```javascript
 //example configuration for step 8
-const maker = new Maker('test', {
+const maker = Maker.create('test', {
 	example: {
 	exampleSetting: true
 	}
@@ -98,7 +98,7 @@ exampleService.manager().onConnected(()=>{
 	/*executed after connected*/
 });
 
-const maker = new Maker('http', {example: "ExampleService"});
+const maker = Maker.create('http', {example: "ExampleService"});
 
 //wait for all services used by the maker object to authenticate
 maker.authenticate();
@@ -117,7 +117,7 @@ this.get('event').registerPollEvents({
     });
 ```
 
-One way to add an event is to “register” a function that gets called on each new block, using the event service's `registerPollEvents()` function.  For example, here is some code from the price service. 
+One way to add an event is to “register” a function that gets called on each new block, using the event service's `registerPollEvents()` function.  For example, here is some code from the price service.
 `this.getEthPrice()` will be called on each new block, and if the state has changed from the last call, a `price/ETH_USD` event will be emitted with the payload { price: [new_price] }.
 
 ```javascript
@@ -145,4 +145,3 @@ this._emitterInstance.registerPollEvents({
 ```
 
 Note that calling `registerPollEvents` and `emit()` directly on the event service like in the previous two examples will register events on the "default" event emitter instance.  However, you can create a new event emitter instance for your new service.  For example, the CDP object defines it's own event emitter, as can be seen here, by calling the event service's `buildEmitter()` function.
-
