@@ -1,5 +1,7 @@
 # Adding a New Service
 
+*Note: This section is only for advanced users that are willing to modify the dai.js source code.  In the future, you will be able to add custom services without needing to modify the source code.*
+
 You can take advantage of the pluggable architecture of this library by choosing different implementations for services, and/or adding new service roles altogether.  A service is just a Javascript class that inherits from either `PublicService`, `PrivateService`, or `LocalService`, and contains public method(s).  It can depend on other services through a built-in dependency injection framework, and can also be configured through the Maker config file / config options.
 
 ## Steps to add a new service
