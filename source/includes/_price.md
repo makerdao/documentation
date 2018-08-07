@@ -6,7 +6,7 @@ const price = maker.service('price');
 
 Retrieve the PriceService through `Maker.service('price')`.
 
-The PriceService exposes the collateral and governance tokens' price information that is 
+The PriceService exposes the collateral and governance tokens' price information that is
 reported by the oracles in the Maker system.
 
 ## getEthPrice
@@ -15,7 +15,7 @@ reported by the oracles in the Maker system.
 const ethPrice = await price.getEthPrice();
 ```
 
-Get the current USD price of ETH.
+Get the current USD price of ETH, as a `USD_ETH` [price unit](#units).
 
 ## getMkrPrice
 
@@ -23,7 +23,7 @@ Get the current USD price of ETH.
 const mkrPrice = await price.getMkrPrice();
 ```
 
-Get the current USD price of the governance token MKR.
+Get the current USD price of the governance token MKR, as a `USD_MKR` [price unit](#units).
 
 ## getPethPrice
 
@@ -31,7 +31,7 @@ Get the current USD price of the governance token MKR.
 await pethPrice = price.getPethPrice();
 ```
 
-Get the current USD price of PETH (pooled ethereum) according to the Maker price oracle.
+Get the current USD price of PETH (pooled ethereum), as a `USD_PETH` [price unit](#units).
 
 ## setEthPrice
 
@@ -39,7 +39,7 @@ Get the current USD price of PETH (pooled ethereum) according to the Maker price
 await price.setEthPrice(475);
 ```
 
-Set the current USD price of ETH. 
+Set the current USD price of ETH.
 
 This requires the necessary permissions and will only be useful in a testing environment.
 
@@ -49,7 +49,7 @@ This requires the necessary permissions and will only be useful in a testing env
 await price.setMkrPrice(950.00);
 ```
 
-Set the current USD price of the governance token MKR. 
+Set the current USD price of the governance token MKR.
 
 This requires the necessary permissions and will only be useful in a testing environment.
 

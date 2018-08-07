@@ -22,8 +22,8 @@ Once it's installed, import the module into your project as shown on the right.
 var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
 
 maker.openCdp()
-  .then(cdp => cdp.getInfo())
-  .then(info => console.log(info));
+  .then(cdp => cdp.getId())
+  .then(id => console.log(id));
 </script>
 ```
 
@@ -42,8 +42,8 @@ async function openLockDraw() {
   await cdp.lockEth(0.25);
   await cdp.drawDai(50);
 
-  const info = await cdp.getInfo();
-  console.log(info);
+  const debt = await cdp.getDebtValue();
+  console.log(debt.toString); // '50.00 DAI'
 }
 
 openLockDraw();

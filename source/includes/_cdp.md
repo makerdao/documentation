@@ -11,71 +11,32 @@ const id = await cdp.getId();
 * **Params:** none
 * **Returns:** promise (resolves to CDP ID)
 
-Use `cdp.getId()` to retrieve the ID from a CDP object. You may need to use the ID as a parameter for other functions.
+Use `cdp.getId()` to retrieve the ID from a CDP object. You can pass this ID to
+[`Maker.getCdp`](#getcdp).
 
-
-## **getInfo**
-
-```javascript
-const info = await cdp.getInfo();
-const lockedPeth = info.ink;
-```
-
-* **Params:** none
-* **Returns:** promise (resolves to CDP info object)
-
-`cdp.getInfo()` will return a few distinct properties of the CDP:
-
-* lad: The Ethereum address associated with the owner of the CDP
-* ink: Amount of PETH collateral locked in the CDP (this returns the same value as `cdp.getCollateralValueInPeth()`)
-* art: Outstanding "normalized" debt - tax only (this is not the actual debt.  Use one of the getDebtValue functions for that)
-* ire: Outstanding "normalized" debt (this is not the actual total amount owed.  Use one of the getDebtValue and getMkrFee functions for that)
-
-Please refer to the [MakerDAO White Paper](https://makerdao.com/whitepaper/DaiDec17WP.pdf) or reach out on our [community chat](https://chat.makerdao.com/home) if you need help understanding how these variables are used in the system.
-
-## **getDebtValueInDai**
+## **getDebtValue**
 
 ```javascript
-const daiDebt = await cdp.getDebtValueInDai();
+const daiDebt = await cdp.getDebtValue();
+const usdDebt = await cdp.getDebtValue(Maker.USD);
 ```
 
-* **Params:** none
-* **Returns:** promise (resolves to the amount of outstanding debt in Dai)
+* **Params:** [currency unit](#units) (optional)
+* **Returns:** promise (resolves to the amount of outstanding debt)
 
-`cdp.getDebtValueDai()` returns the amount of Dai that has been borrowed against the collateral in the CDP.
+  `cdp.getDebtValue()` returns the amount of that has been borrowed against the collateral in the CDP. By default it returns the amount of Dai as a [currency unit](#units), but can return the equivalent in USD if the first argument is `Maker.USD`.
 
-## **getDebtValueInUSD**
+## **getGovernanceFee**
 
 ```javascript
-const debtInUSD = await cdp.getDebtValueInUSD();
+const mkrFee = await cdp.getGovernanceFee();
+const usdFee = await cdp.getGovernanceFee(Maker.USD);
 ```
 
-* **Params:** none
-* **Returns:** promise (resolves to the amount of outstanding debt in USD)
-
-`cdp.getDebtValueInUSD()` returns the value of the borrowed Dai in USD terms.  This will return the same value as `cdp.getDebtValueInDai` as long as the Target Price is 1.
-
-## **getMkrFeeInUSD**
-
-```javascript
-const feeInUSD = await cdp.getMkrFeeInUSD();
-```
-
-* **Params:** none
+* **Params:** [currency unit](#units) (optional)
 * **Returns:** promise (resolves to the value of the accrued governance fee in USD)
 
-`cdp.getMkrFeeInUSD()` returns the USD value of the accrued governance fee.
-
-## **getMkrFeeInMkr**
-
-```javascript
-const feeInMkr = await cdp.getMkrFeeInMkr();
-```
-
-* **Params:** none
-* **Returns:** promise (resolves to the value of the accrued governance fee in MKR)
-
-`cdp.getMkrFeeInMkr()` returns the amount of MKR token needed to pay off the accrued governance fee
+`cdp.getGovernanceFee()` returns the value of the accrued governance fee. By default it returns the amount of MKR as a [currency unit](#units), but can return the equivalent in USD if the first argument is `Maker.USD`.
 
 ## **getCollateralizationRatio**
 
@@ -86,51 +47,31 @@ const ratio = await cdp.getCollateralizationRatio();
 * **Params:** none
 * **Returns:** promise (resolves to the collateralization ratio)
 
-`cdp.getCollateralizationRatio()` returns the USD value of the collateral in the CDP divided by the USD value of the Dai debt for the CDP, e.g. 2.5
+`cdp.getCollateralizationRatio()` returns the USD value of the collateral in the CDP divided by the USD value of the Dai debt for the CDP, e.g. `2.5`.
 
-## **getLiquidationPriceEthUSD**
+## **getLiquidationPrice**
 
 ```javascript
-const ratio = await cdp.getLiquidationPriceEthUSD();
+const ratio = await cdp.getLiquidationPrice();
 ```
 
 * **Params:** none
 * **Returns:** promise (resolves to the liquidation price)
 
-`cdp.getLiquidationPriceEthUSD()` returns the price of Ether in USD that causes the CDP to become unsafe (able to be liquidated), all other factors constant.
+`cdp.getLiquidationPrice()` returns the price of Ether in USD that causes the CDP to become unsafe (able to be liquidated), all other factors constant. It returns a `USD_ETH` [price unit](#units).
 
-## **getCollateralValueInUSD**
-
-```javascript
-const collateral = await cdp.getCollateralValueInUSD();
-```
-
-* **Params:** none
-* **Returns:** promise (resolves to collateral amount)
-
-`cdp.getCollateralValueInUSD()` returns value of the collateral in the CDP in terms of USD
-
-## **getCollateralValueInEth**
+## **getCollateralValue**
 
 ```javascript
-const collateral = await cdp.getCollateralValueInEth();
+const ethCollateral = await cdp.getCollateralValue();
+const pethCollateral = await cdp.getCollateralValue(Maker.PETH);
+const usdCollateral = await cdp.getCollateralValue(Maker.USD);
 ```
 
-* **Params:** none
+* **Params:** [currency unit](#units) (optional)
 * **Returns:** promise (resolves to collateral amount)
 
-`cdp.getCollateralValueInEth()` returns the value of the collateral in the CDP in terms of Ether
-
-## **getCollateralValueInPeth**
-
-```javascript
-const collateral = await cdp.getCollateralValueInPeth();
-```
-
-* **Params:** none
-* **Returns:** promise (resolves to collateral amount)
-
-`cdp.getCollateralValueInPeth()` returns the value of the collateral in the CDP in terms of Peth
+`cdp.getCollateralValue()` returns the value of the collateral in the CDP. By default it returns the amount of ETH as a [currency unit](#units), but can return the equivalent in PETH or USD depending on the first argument.
 
 ## **isSafe**
 
@@ -141,7 +82,7 @@ const ratio = await cdp.isSafe();
 * **Params:** none
 * **Returns:** promise (resolves to boolean)
 
-`cdp.isSafe()` returns true if the cdp is safe, that is if the USD value of the collateral in the CDP is greater than or equal to USD value of the debt in the CDP multiplied by the liquidation ratio.
+`cdp.isSafe()` returns true if the cdp is safe, that is, if the USD value of its collateral is greater than or equal to USD value of the its debt multiplied by the liquidation ratio.
 
 ## **lockEth**
 
@@ -156,7 +97,6 @@ return await cdp.lockEth(100, ETH);
 
 `cdp.lockEth(eth)` abstracts the token conversions needed to lock collateral in a CDP. It first converts the ETH to WETH, then converts the WETH to PETH, then locks the PETH in the CDP.
 
-
 ## **drawDai**
 
 ```javascript
@@ -169,7 +109,6 @@ return await cdp.drawDai(100, DAI);
 * **Returns:** promise (resolves to `transactionHybrid`)
 
 `cdp.drawDai(dai)` withdraws the specified amount of Dai as a loan against the collateral in the CDP. As such, it will fail if the CDP doesn't have enough PETH locked in it to remain at least 150% collateralized.
-
 
 ## **wipeDai**
 
@@ -199,7 +138,6 @@ return await cdp.freePeth(10000000000000000000, PETH.wei);
 
 `cdp.freePeth(peth)` withdraws the specified amount of PETH and returns it to the owner's address. As such, the contract will only allow you to free PETH that's locked in excess of 150% of the CDP's outstanding debt.
 
-
 ## **give**
 
 ```javascript
@@ -211,7 +149,6 @@ return await cdp.give('0x046ce6b8ecb159645d3a605051ee37ba93b6efcc');
 
 `cdp.give(address)` transfers ownership of the CDP from the current owner to the address you provide as an argument.
 
-
 ## **shut**
 
 ```javascript
@@ -222,4 +159,3 @@ return await cdp.shut();
 * **Returns:** promise (resolves to `transactionHybrid`)
 
 `cdp.shut()` will close the CDP and return the collateral, in PETH, to its owner. It will fail if the CDP still has outstanding debt.
-
