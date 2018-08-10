@@ -30,6 +30,8 @@ right.
 * `'test'`
   * Use a local testnet (e.g. Ganache) running at `http://127.0.0.1:2000`, and
 sign transactions using testnet-managed keys.
+* `'mainnet'`
+  * Use the main Ethereum network via Infura.
 
 ## Options
 

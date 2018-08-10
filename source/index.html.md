@@ -41,6 +41,8 @@ Maker's entire suite of contracts will eventually be accessible through this lib
 * Token contract functionality for WETH, PETH, MKR, Dai, and ETH
 * Buying and selling MKR and Dai with built-in DEX integration
 
+For example code that consumes the library, check out [this repository](https://github.com/makerdao/integration-examples).
+
 [tests]: http://img.shields.io/travis/jluccisano/webpack-es6-boilerplate.svg
 [tests-url]: https://travis-ci.org/jluccisano/webpack-es6-boilerplate
 [cover]: https://codecov.io/gh/jluccisano/webpack-es6-boilerplate/branch/master/graph/badge.svg
