@@ -25,7 +25,7 @@ e.g. `price/**` will trigger on `price/USD_ETH`, `price/MKR_USD`, and `price/MKR
 }
 ```
 
-Triggered events will recieve the object shown on the right.
+Triggered events will receive the object shown on the right.
 
 * `<event_type>` - the name of the event
 * `<event_payload>` - the new state data sent with the event
