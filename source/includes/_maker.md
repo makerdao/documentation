@@ -75,6 +75,14 @@ const maker = Maker.create('http', {
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
 
+## **authenticate**
+
+```javascript
+await maker.authenticate();
+```
+
+After creating your Maker instance, and before using any other methods, run this. It makes sure all services are initialized, connected to any remote API's, and properly authenticated.
+
 ## **service**
 
 ```javascript

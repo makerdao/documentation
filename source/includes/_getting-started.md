@@ -21,7 +21,8 @@ Once it's installed, import the module into your project as shown on the right.
 <script>
 var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
 
-maker.openCdp()
+maker.authenticate()
+  .then(() => maker.openCdp())
   .then(cdp => cdp.getId())
   .then(id => console.log(id));
 </script>
@@ -37,7 +38,8 @@ import Maker from '@makerdao/dai';
 const maker = Maker.create("kovan", { privateKey: YOUR_PRIVATE_KEY });
 
 async function openLockDraw() {
-  cdp = await maker.openCdp();
+  await maker.authenticate();
+  const cdp = await maker.openCdp();
 
   await cdp.lockEth(0.25);
   await cdp.drawDai(50);
