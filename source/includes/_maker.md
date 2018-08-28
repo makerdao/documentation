@@ -2,6 +2,8 @@
 
 ## Presets
 ```javascript
+const makerBrowser = Maker.create('browser');
+
 const makerHttp = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY,
   url: 'https://sai-service.makerdao.com/node'
@@ -23,6 +25,8 @@ and an options hash.
 Available presets are listed below, with the required options for each shown on the
 right.
 
+* `'browser'`
+  * Use the provider from the browser (e.g. MetaMask).
 * `'http'`
   * Use Web3.providers.HttpProvider.
 * `'kovan'`
@@ -66,12 +70,6 @@ const maker = Maker.create('http', {
 * `web3.statusTimerDelay`
   * Number in milliseconds that represents how often the blockchain connection and account authentication is checked. This allows the library to move out of an authenticated or connected state when it discovers it no longer has access to unlocked accounts, or can no longer connect to a node.
   * Default value: 5000 (5 seconds)
-* `web3.usePresetProvider`
-  * If `true`, the value `window.web3` (if there is one) will be used as the Provider, instead of creating a new one. For example, this should be true if the library is used in a browser and it should use MetaMask.
-  * Default value: `false`
-* `overrideMetamask`
-  * Same as above, but with simpler terminology.
-  * Default value: `true`
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
 
