@@ -17,6 +17,7 @@ includes:
   - system-status
   - events
   - transaction
+  - accounts
   - source-code-setup
   - new-service
 
