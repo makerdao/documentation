@@ -50,7 +50,9 @@ const maker = Maker.create('http', {
   },
   web3: {
     statusTimerDelay: 2000,
-    usePresetProvider: false
+    transactionSettings: {
+      gasPrice: 12000000000
+    }
   }
   log: false
 });
@@ -70,6 +72,9 @@ const maker = Maker.create('http', {
 * `web3.statusTimerDelay`
   * Number in milliseconds that represents how often the blockchain connection and account authentication is checked. This allows the library to move out of an authenticated or connected state when it discovers it no longer has access to unlocked accounts, or can no longer connect to a node.
   * Default value: 5000 (5 seconds)
+* `web3.transactionSettings`
+  * Object containing transaction options to be applied to all transactions sent through the library.
+  * Default value: `{ gasLimit: 4000000 }`
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
 
