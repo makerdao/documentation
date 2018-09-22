@@ -4,9 +4,7 @@
 
 ```javascript
 const txObject = await cdp.wipeDai(1);
-
-// the transaction is being sent to the blockchain;
-// if not already pending, it will be pending soon
+// the transaction has been mined
 
 txObject.onPending(() => console.log('pending!'));
 txObject.onMined(() => console.log('mined!'));
@@ -43,10 +41,10 @@ const timeStampSubmitted = txObject.timeStampSubmitted();
 ```
 
 `TransactionObjects` also have a few methods to provide details on the transaction:
-	* `hash`: transaction hash
-	* `fees()`: amount of ether spent on gas
-	* `timeStamp()`: timestamp of when transaction was mined
-	* `timeStampSubmitted()`: timestamp of when transaction was submitted to the network
+* `hash`: transaction hash
+* `fees()`: amount of ether spent on gas
+* `timeStamp()`: timestamp of when transaction was mined
+* `timeStampSubmitted()`: timestamp of when transaction was submitted to the network
 
 
 ### onNewTransaction

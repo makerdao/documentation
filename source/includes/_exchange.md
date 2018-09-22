@@ -23,7 +23,7 @@ Sell a set amount of DAI and receive another token in return.
 	* `daiAmount` - Amount of DAI to sell.
 	* `tokenSymbol` - Token to receive in return.
 	* `minFillAmount` - Minimum amount to receive in return.
-* **Returns:** promise (resolves to OasisOrder once mined)
+* **Returns:** promise (resolves to [OasisOrder](#oasisorder) once mined)
 
 ## buyDai
 
@@ -38,7 +38,7 @@ Buy a set amount of DAI and give another token in return.
 	* `daiAmount` - Amount of DAI to buy.
 	* `tokenSymbol` - Token to give in return.
 	* `minFillAmount` - Maximum amount to give in return.
-* **Returns:** promise (resolves to OasisOrder once mined)
+* **Returns:** promise (resolves to [OasisOrder](#oasisorder) once mined)
 
 ## OasisOrder
 
