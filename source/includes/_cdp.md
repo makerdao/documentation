@@ -93,7 +93,7 @@ return await cdp.lockEth(100, ETH);
 ```
 
 * **Params:** amount to lock in the CDP, in units defined by the price service.
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `cdp.lockEth(eth)` abstracts the token conversions needed to lock collateral in a CDP. It first converts the ETH to WETH, then converts the WETH to PETH, then locks the PETH in the CDP.
 
@@ -106,7 +106,7 @@ return await cdp.drawDai(100, DAI);
 ```
 
 * **Params:** amount to draw (in Dai, as string)
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `cdp.drawDai(dai)` withdraws the specified amount of Dai as a loan against the collateral in the CDP. As such, it will fail if the CDP doesn't have enough PETH locked in it to remain at least 150% collateralized.
 
@@ -119,7 +119,7 @@ return await cdp.wipeDai(100, DAI);
 ```
 
 * **Params:** amount to repay (in Dai, as string)
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `cdp.wipeDai(dai)` sends Dai back to the CDP in order to repay some (or all) of its outstanding debt.
 
@@ -134,7 +134,7 @@ return await cdp.freePeth(10000000000000000000, PETH.wei);
 ```
 
 * **Params:** amount of Peth collateral to free from the CDP, in units defined by the price service.
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `cdp.freePeth(peth)` withdraws the specified amount of PETH and returns it to the owner's address. As such, the contract will only allow you to free PETH that's locked in excess of 150% of the CDP's outstanding debt.
 
@@ -145,7 +145,7 @@ return await cdp.give('0x046ce6b8ecb159645d3a605051ee37ba93b6efcc');
 ```
 
 * **Params:** Ethereum address (string)
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `cdp.give(address)` transfers ownership of the CDP from the current owner to the address you provide as an argument.
 
@@ -156,6 +156,17 @@ return await cdp.shut();
 ```
 
 * **Params:** none
-* **Returns:** promise (resolves to `transactionHybrid`)
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
-`cdp.shut()` will close the CDP and return the collateral, in PETH, to its owner. It will fail if the CDP still has outstanding debt.
+`cdp.shut()` wipes all remaining dai, frees all remaining collateral, and deletes the CDP. This will fail if the caller does not have enough DAI and MKR to wipe all debt.
+
+## **bite**
+
+```javascript
+return await cdp.bite();
+```
+
+* **Params:** none
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
+
+`cdp.bite()` will initiate the liquidation process of an undercollateralized CDP

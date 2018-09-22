@@ -104,11 +104,11 @@ const newCdp = await maker.openCdp();
 ```
 
 * **Params:** none
-* **Returns:** promise (resolves to new CDP object)
+* **Returns:** promise (resolves to new CDP object once mined)
 
 `maker.openCdp()` will create a new CDP, and then return the CDP object, which can be used to access other CDP functionality.
 
-By default, the promise will resolve when the transaction is mined.
+The promise will resolve when the transaction is mined.
 
 
 ## **getCdp**
