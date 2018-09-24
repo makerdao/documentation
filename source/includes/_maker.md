@@ -6,7 +6,7 @@ const makerBrowser = Maker.create('browser');
 
 const makerHttp = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY,
-  url: 'https://sai-service.makerdao.com/node'
+  url: 'http://some-ethereum-rpc-node.net'
 });
 
 const makerKovan = Maker.create('kovan', {
@@ -42,7 +42,7 @@ sign transactions using testnet-managed keys.
 ```javascript
 const maker = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY, // '0xabc...'
-  url: 'https://sai-service.makerdao.com/node',
+  url: 'http://some-ethereum-rpc-node.net',
   provider: {
     type: 'HTTP', // 'INFURA', 'TEST'
     network: 'kovan',
@@ -62,7 +62,6 @@ const maker = Maker.create('http', {
   * The private key used to sign transactions. If not provided, the first account available from the Ethereum provider will be used.
 * `url`
   * The URL of the node to connect to. Only used when `provider.type` is `"HTTP"`.
-  * Default value: `"https://sai-service.makerdao.com/node"`
 * `provider.infuraApiKey`
   * Your Infura unique access token (the part after infura.io/ when accessing Infura via https). Only used when `provider.type` is `"INFURA"`.
 * `provider.type`
