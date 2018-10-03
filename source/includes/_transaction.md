@@ -27,24 +27,24 @@ txMgr.listen(open, {
   error: tx => {
     // do someting when tx fails
   }
-})
+});
 
-await txMgr.confirm(open); // confirmed will fire
+await txMgr.confirm(open); // confirmed will fire after 5 blocks if default
 ```
 
 Accessing these status callbacks is done through the `listen` function from the `transactionManager` service. The listen function takes a promise and a callback object with the transaction status as a key.
 
-One caveat is that the `confirmed` event will not fire unless the `transactionManager` confirms the promise.
+One caveat is that the `confirmed` event will not fire unless the `transactionManager` confirms the promise. This `confirm()` function waits on a number of blocks after the transaction has been mined, of which the default is 5, to resolve. To change this, the `confirmedBlockCount` attribute in the [options](#options) object can be modified. 
 
 ### Transaction Metadata
 
 ```javascript
-const lock = cdp.lockEth(1)
-txMgr.listen(open, {
+const lock = cdp.lockEth(1);
+txMgr.listen(lock, {
   pending: tx => {
     const {contract, method} = tx.metadata;
     if(contract === 'WETH' && method === 'deposit') {
-      console.log(tx.hash) // print hash for WETH.deposit
+      console.log(tx.hash); // print hash for WETH.deposit
     }
   }
 })
@@ -57,8 +57,8 @@ There are functions such as `lockEth()` which are composed of several internal t
 
 A `TransactionObject` also has a few methods to provide further details on the transaction:
 
-- `hash` : transaction hash
-- `fees()` : amount of ether spent on gas
-- `timeStamp()` : timestamp of when transaction was mined
-- `timeStampSubmitted()` : timestamp of when transaction was submitted to the network
+* `hash` : transaction hash
+* `fees()` : amount of ether spent on gas
+* `timeStamp()` : timestamp of when transaction was mined
+* `timeStampSubmitted()` : timestamp of when transaction was submitted to the network
 

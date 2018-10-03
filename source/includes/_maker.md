@@ -53,8 +53,9 @@ const maker = Maker.create('http', {
     transactionSettings: {
       gasPrice: 12000000000
     }
-  }
-  log: false
+  },
+  log: false,
+  confirmedBlockCount: 8
 });
 ```
 
@@ -76,6 +77,8 @@ const maker = Maker.create('http', {
   * Default value: `{ gasLimit: 4000000 }`
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
+* `confirmedBlockCount`
+  * Number of blocks to wait after a transaction has been mined. See [transactions](#transactions) for further explanation. Default is 5.
 
 ## **authenticate**
 
