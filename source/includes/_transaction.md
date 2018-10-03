@@ -9,7 +9,7 @@ const open = maker.service('cdp').openCdp();
 // open is a transactionObject when promise resolves
 ```
 
-The `transactionManager` service is used to access and monitor `TransactionObjects` which can be used to track a transaction's status as it propagates through the blockchain. `TransactionObjects` have methods which trigger callbacks in the event of a transaction's status being `pending`, `mined`, `confirmed` and `error`
+The `transactionManager` service is used to access and monitor `TransactionObjects` which can be used to track a transaction's status as it propagates through the blockchain. `TransactionObjects` have methods which trigger callbacks in the event of a transaction's status being `pending`, `mined`, `confirmed` and `error`.
 
 ### Listen
 
@@ -34,7 +34,7 @@ await txMgr.confirm(open); // confirmed will fire
 
 Accessing these status callbacks is done through the `listen` function from the `transactionManager` service. The listen function takes a promise and a callback object with the transaction status as a key.
 
-One caveat is that the `confirmed` event will not fire unless the `transactionManager` confirms the promise
+One caveat is that the `confirmed` event will not fire unless the `transactionManager` confirms the promise.
 
 ### Transaction Metadata
 
@@ -55,7 +55,7 @@ There are functions such as `lockEth()` which are composed of several internal t
 
 ### TransactionObject Methods
 
-`TransactionObjects` also have a few methods to provide further details on the transaction:
+A `TransactionObjects` also has a few methods to provide further details on the transaction:
 
 - `hash` : transaction hash
 - `fees()` : amount of ether spent on gas
