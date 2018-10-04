@@ -78,7 +78,7 @@ const maker = Maker.create('http', {
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
 * `confirmedBlockCount`
-  * Number of blocks to wait after a transaction has been mined. See [transactions](#transactions) for further explanation. Default is 5.
+  * Number of blocks to wait after a transaction has been mined when calling `confirm`. See [transactions](#transactions) for further explanation. Default is 5.
 
 ## **authenticate**
 
