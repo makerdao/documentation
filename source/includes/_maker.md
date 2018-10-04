@@ -149,9 +149,9 @@ cdp.lockEth('0.25');
 cdp.lockEth(ETH(0.25));
 cdp.lockEth(ETH.wei(250000000000000000));
 
-// you can pass the unit as a second argument
-cdp.lockEth(0.25, ETH);
-cdp.lockEth(250000000000000000, ETH.wei);
+// you can pass the unit as an options argument
+cdp.lockEth(0.25, { unit: ETH });
+cdp.lockEth(250000000000000000, { unit: ETH.wei });
 
 const eth = ETH(5);
 eth.toString() == '5.00 ETH';
