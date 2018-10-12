@@ -19,11 +19,15 @@ const cdp2 = await maker.openCdp(); // owned by "other"
 
 maker.useAccount('yetAnother');
 const cdp3 = await maker.openCdp(); // owned by "yetAnother"
+
+await maker.addAccount({type: privateKey, key: fourthAccount.key}); // the name argument is optional
+maker.useAccountWithAddress(fourthAccount.address)
+const cdp4 = await maker.openCdp(); //owned by the fourth account
 ```
 
 The library supports the use of multiple accounts (i.e. private keys) within a single Maker instance. Accounts can be specified in the constructor options or with the `addAccount` method.
 
-Call `useAccount` to switch to using an account by its name, and subsequent calls will use that account as the transaction signer.
+Call `useAccount` to switch to using an account by its name, or `useAccountWithAddress` to switch to using an account by its address, and subsequent calls will use that account as the transaction signer.
 
 When the Maker instance is first created, it will use the account named `default` if it exists, or the first account in the list otherwise.
 
