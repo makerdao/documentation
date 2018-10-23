@@ -87,7 +87,7 @@ const ratio = await cdp.isSafe();
 ## **enoughMkrToWipe**
 
 ```javascript
-const enoughMkrToWipe = await cdp.enoughMkrToWipe(1);
+const enoughMkrToWipe = await cdp.enoughMkrToWipe(10000000000000000000, DAI.wei);
 ```
 
 * **Params:** amount of Dai to wipe
