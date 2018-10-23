@@ -84,6 +84,17 @@ const ratio = await cdp.isSafe();
 
 `cdp.isSafe()` returns true if the cdp is safe, that is, if the USD value of its collateral is greater than or equal to USD value of the its debt multiplied by the liquidation ratio.
 
+## **enoughMkrToWipe**
+
+```javascript
+const enoughMkrToWipe = await cdp.enoughMkrToWipe(1);
+```
+
+* **Params:** amount of Dai to wipe
+* **Returns:** promise (resolves to boolean)
+
+`cdp.enoughMkrToWipe(dai)` returns true if the current account owns enough MKR to wipe the specified amount of Dai from the CDP.
+
 ## **lockEth**
 
 ```javascript
