@@ -8,3 +8,15 @@ rvm:
 
 cache: bundler
 script: bundle exec middleman build
+deploy:
+  provider: s3
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: "makerdao.com"
+  acl: public_read
+  local-dir: build
+  upload-dir: documentation
+  skip_cleanup: true
+  cache_control: "max-age=300"
+  on:
+    branch: master
