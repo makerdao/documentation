@@ -23,8 +23,7 @@ var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
 
 maker.authenticate()
   .then(() => maker.openCdp())
-  .then(cdp => cdp.getId())
-  .then(id => console.log(id));
+  .then(cdp => console.log(cdp.id));
 </script>
 ```
 

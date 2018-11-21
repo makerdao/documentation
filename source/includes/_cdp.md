@@ -2,16 +2,11 @@
 
 Now that you've used `maker` to either open a new CDP or retrieve an existing one, you can use the returned `cdp` object to call functions on it.
 
-## **getId**
+## **Properties**
 
-```javascript
-const id = await cdp.getId();
-```
+### `.id`
 
-* **Params:** none
-* **Returns:** promise (resolves to CDP ID)
-
-Use `cdp.getId()` to retrieve the ID from a CDP object. You can pass this ID to
+This is the ID of the CDP object. You can pass this ID to
 [`Maker.getCdp`](#getcdp).
 
 ## **getDebtValue**
