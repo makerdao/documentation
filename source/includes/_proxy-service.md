@@ -17,10 +17,6 @@ Forwarding proxies are meant to be as simple as possible, so they lack some feat
 
 The first time an account is used to interact with any Maker application, the user will be prompted to deploy a profile proxy. This copy of DSProxy can be used in any product, including dai.js, by way of a universal [proxy registry](https://github.com/makerdao/proxy-registry/tree/master). Then, the calldata from any function in the forwarding proxy can be passed to DSProxy's `execute()` method, which runs the provided code in the context of the profile proxy.
 
-This makes it possible for users' token allowances to persist from one Maker application to another, and it allows users to [recover any funds](https://proxy-recover-funds.surge.sh/) mistakenly sent to the proxy's address.
-
-Many of the functions in `DSProxyService` will only be relevant to `power users`. All that is strictly required to automatically generate a function's calldata and find the correct profile proxy is the inclusion of `{ dsProxy: true }` in the options object for any transaction — provided the user has already deployed a profile proxy. If that's not certain, it may also be necessary to query the registry to determine if a user already owns a proxy, and to `build` one if they do not.
-
 ```javascript
 // Calling the forwarding proxy with dai.js
 
@@ -39,6 +35,10 @@ function lockAndDraw(tubContractAddress, cdpId, daiAmount, ethAmount) {
 }
 
 ```
+
+This makes it possible for users' token allowances to persist from one Maker application to another, and it allows users to [recover any funds](https://proxy-recover-funds.surge.sh/) mistakenly sent to the proxy's address.
+
+Many of the functions in `DSProxyService` will only be relevant to `power users`. All that is strictly required to automatically generate a function's calldata and find the correct profile proxy is the inclusion of `{ dsProxy: true }` in the options object for any transaction — provided the user has already deployed a profile proxy. If that's not certain, it may also be necessary to query the registry to determine if a user already owns a proxy, and to `build` one if they do not.
 
 ## currentProxy
 
