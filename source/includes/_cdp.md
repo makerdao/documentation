@@ -19,7 +19,7 @@ const usdDebt = await cdp.getDebtValue(Maker.USD);
 * **Params:** [currency unit](#units) (optional)
 * **Returns:** promise (resolves to the amount of outstanding debt)
 
-  `cdp.getDebtValue()` returns the amount of that has been borrowed against the collateral in the CDP. By default it returns the amount of Dai as a [currency unit](#units), but can return the equivalent in USD if the first argument is `Maker.USD`.
+  `cdp.getDebtValue()` returns the amount of debt that has been borrowed against the collateral in the CDP. By default it returns the amount of Dai as a [currency unit](#units), but can return the equivalent in USD if the first argument is `Maker.USD`.
 
 ## **getGovernanceFee**
 
