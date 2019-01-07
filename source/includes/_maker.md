@@ -50,12 +50,12 @@ const maker = Maker.create('http', {
   },
   web3: {
     statusTimerDelay: 2000,
+    confirmedBlockCount: 8
     transactionSettings: {
       gasPrice: 12000000000
     }
   },
-  log: false,
-  confirmedBlockCount: 8
+  log: false
 });
 ```
 
@@ -75,10 +75,10 @@ const maker = Maker.create('http', {
 * `web3.transactionSettings`
   * Object containing transaction options to be applied to all transactions sent through the library.
   * Default value: `{ gasLimit: 4000000 }`
+* `web3.confirmedBlockCount`
+  * Number of blocks to wait after a transaction has been mined when calling `confirm`. See [transactions](#transactions) for further explanation. Defaults to 5.
 * `log`
   * Set this to `false` to reduce the verbosity of logging.
-* `confirmedBlockCount`
-  * Number of blocks to wait after a transaction has been mined when calling `confirm`. See [transactions](#transactions) for further explanation. Default is 5.
 
 ## **authenticate**
 
