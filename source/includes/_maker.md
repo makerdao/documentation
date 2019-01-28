@@ -6,7 +6,7 @@ const makerBrowser = Maker.create('browser');
 
 const makerHttp = Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY,
-  url: 'http://some-ethereum-rpc-node.net'
+  url: 'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'
 });
 
 const makerKovan = Maker.create('kovan', {
@@ -30,12 +30,12 @@ right.
 * `'http'`
   * Use Web3.providers.HttpProvider.
 * `'kovan'`
-  * Use the Kovan testnet via Infura.
+  * Use the Kovan testnet via Infura.  Note that the way this preset works will be changed after March 27th 2019, to account for [Infura's new endpoints](https://blog.infura.io/infura-dashboard-transition-update-c670945a922a).  For now, we recommend using the `http` preset with your infura endpoint instead.
 * `'test'`
   * Use a local testnet (e.g. Ganache) running at `http://127.0.0.1:2000`, and
 sign transactions using testnet-managed keys.
 * `'mainnet'`
-  * Use the main Ethereum network via Infura.
+  * Use the main Ethereum network via Infura.  Note that the way this preset works will be changed after March 27th 2019, to account for [Infura's new endpoints](https://blog.infura.io/infura-dashboard-transition-update-c670945a922a).  For now, we recommend using the `http` preset with your infura endpoint instead.
 
 ## Options
 
@@ -45,8 +45,7 @@ const maker = Maker.create('http', {
   url: 'http://some-ethereum-rpc-node.net',
   provider: {
     type: 'HTTP', // 'INFURA', 'TEST'
-    network: 'kovan',
-    infuraApiKey: YOUR_INFURA_API_KEY
+    network: 'kovan'
   },
   web3: {
     statusTimerDelay: 2000,
@@ -64,7 +63,7 @@ const maker = Maker.create('http', {
 * `url`
   * The URL of the node to connect to. Only used when `provider.type` is `"HTTP"`.
 * `provider.infuraApiKey`
-  * Your Infura unique access token (the part after infura.io/ when accessing Infura via https). Only used when `provider.type` is `"INFURA"`.
+  * Your Infura unique access token (the part after infura.io/ when accessing Infura via https). Only used when `provider.type` is `"INFURA"`.  Note that this will be deprecated after March 27th 2019 to account for [Infura's new endpoints](https://blog.infura.io/infura-dashboard-transition-update-c670945a922a).  For now, we recommend using the `http` preset with your infura endpoint instead.
 * `provider.type`
   * `"INFURA"`: connect to an Ethereum node via infura
   * `"TEST"`: connect to a local test blockchain at 'http://127.1:2000'

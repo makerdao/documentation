@@ -19,7 +19,10 @@ Once it's installed, import the module into your project as shown on the right.
 <script src="./dai.js" />
 
 <script>
-var maker = Maker.create('kovan', { privateKey: YOUR_PRIVATE_KEY });
+var maker = Maker.create('http',{
+	privateKey: YOUR_PRIVATE_KEY, 
+	url: 'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'
+});
 
 maker.authenticate()
   .then(() => maker.openCdp())
@@ -34,7 +37,10 @@ This library is also accessible as a [UMD module](https://github.com/umdjs/umd).
 ```javascript
 import Maker from '@makerdao/dai';
 
-const maker = Maker.create("kovan", { privateKey: YOUR_PRIVATE_KEY });
+const maker = Maker.create("http",{
+	privateKey: YOUR_PRIVATE_KEY, 
+	url: 'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'
+});
 
 async function openLockDraw() {
   await maker.authenticate();
