@@ -103,6 +103,8 @@ return await cdp.lockEth(100, ETH);
 
 `cdp.lockEth(eth)` abstracts the token conversions needed to lock collateral in a CDP. It first converts the ETH to WETH, then converts the WETH to PETH, then locks the PETH in the CDP.
 
+*Note: this process is not atomic, so it's possible for some of the transactions to succeed but not all three.  See [Using DsProxy](#proxy-service) for executing multiple transactions atomically.*
+
 ## **drawDai**
 
 ```javascript

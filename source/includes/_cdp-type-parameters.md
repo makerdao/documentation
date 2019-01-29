@@ -16,7 +16,7 @@ const ratio = await ethCdp.getLiquidationRatio();
 * **Params:** none
 * **Returns:** promise (resolves to liquidation ratio)
 
-`getLiquidationPenalty()` returns a decimal representation of the liquidation penalty, e.g. 1.5
+`getLiquidationRatio()` returns a decimal representation of the liquidation ratio, e.g. 1.5
 
 ## **getLiquidationPenalty**
 
@@ -38,4 +38,6 @@ const fee = await ethCdp.getAnnualGovernanceFee();
 * **Params:** none
 * **Returns:** promise (resolves to yearly governance fee)
 
-`getAnnualGovernanceFee()` returns a decimal representation of the liquidation penalty, e.g. 0.005
+`getAnnualGovernanceFee()` returns a decimal representation of the annual governance fee, e.g. 0.005.  
+
+*Note: this is often referred to as the `Stability Fee`, even though technically the `Stability Fee` is the fee that is paid in Dai, and the `Governance Fee` is the fee that is paid in MKR.  But since fees are only paid in MKR in Single-Collateral Dai, and only paid in Dai in Multi-Collateral Dai, the fee in Single-Collateral Dai is often referred to as the `Stability Fee` to be consistent with the term that will be used in Multi-Collateral Dai and to avoid unduly confusing regular users.*
