@@ -33,6 +33,8 @@ const usdFee = await cdp.getGovernanceFee(Maker.USD);
 
 `cdp.getGovernanceFee()` returns the value of the accrued governance fee. By default it returns the amount of MKR as a [currency unit](#units), but can return the equivalent in USD if the first argument is `Maker.USD`.
 
+*Note: this is often referred to as the `Stability Fee`, even though technically the `Stability Fee` is the fee that is paid in Dai, and the `Governance Fee` is the fee that is paid in MKR.  But since fees are only paid in MKR in Single-Collateral Dai, and only paid in Dai in Multi-Collateral Dai, the fee in Single-Collateral Dai is often referred to as the `Stability Fee` to be consistent with the term that will be used in Multi-Collateral Dai and to avoid unduly confusing regular users.*
+
 ## **getCollateralizationRatio**
 
 ```javascript
