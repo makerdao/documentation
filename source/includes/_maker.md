@@ -2,21 +2,21 @@
 
 ## Presets
 ```javascript
-const makerBrowser = Maker.create('browser');
+const makerBrowser = await Maker.create('browser');
 
-const makerHttp = Maker.create('http', {
+const makerHttp = await Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY,
   url: 'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'
 });
 
-const makerKovan = Maker.create('kovan', {
+const makerKovan = await Maker.create('kovan', {
   privateKey: YOUR_PRIVATE_KEY,
   provider: {
     infuraApiKey: YOUR_INFURA_API_KEY
   }
 });
 
-const makerTest = Maker.create('test');
+const makerTest = await Maker.create('test');
 ```
 
 When instantiating a `Maker` object, you pass in the name of a configuration preset
@@ -40,7 +40,7 @@ sign transactions using testnet-managed keys.
 ## Options
 
 ```javascript
-const maker = Maker.create('http', {
+const maker = await Maker.create('http', {
   privateKey: YOUR_PRIVATE_KEY, // '0xabc...'
   url: 'http://some-ethereum-rpc-node.net',
   provider: {

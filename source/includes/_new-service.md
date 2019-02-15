@@ -47,14 +47,14 @@ import Maker from '../../src/index';
 
 //step 8: a new service role ('example') is used
 test('test 1', async () => {
-  const maker = Maker.create('http', {example: "ExampleService"});
+  const maker = await Maker.create('http', {example: "ExampleService"});
   const exampleService = customMaker.service('example');
   exampleService.test(); //logs "test"
 });
 
 //step 8: a custom service replaces a default service (Web3)
 test('test 2', async () => {
-  const maker = Maker.create('http', {web3: "MyCustomWeb3Service"});
+  const maker = await Maker.create('http', {web3: "MyCustomWeb3Service"});
   const mycustomWeb3Service = maker.service('web3');
 });
 ```
@@ -67,12 +67,14 @@ test('test 2', async () => {
 
 ```javascript
 //step 10: in ExampleService.spec.js
-const maker = Maker.create('http', {example: ["ExampleService", {
+const maker = await Maker.create('http', {
+	example: ["ExampleService", {
     exampleSetting: "this is a configuration setting"
-  }]});
+  }]
+});
 
 //step 10: accessing configuration settings in ExampleService.js
-initialize(settings){
+initialize(settings) {
   if(settings.exampleSetting){
     this.get('log').info(settings.exampleSetting);
   }
@@ -97,7 +99,7 @@ To specify what initializing, connecting and authenticating entails, implement t
 ![alt text](../images/statemachine.png)
 
 ```javascript
-const maker = Maker.create('http', {example: "ExampleService"});
+const maker = await Maker.create('http', {example: "ExampleService"});
 const exampleService = customMaker.service('example');
 
 //wait for example service and its dependencies to initialize

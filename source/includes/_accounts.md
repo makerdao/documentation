@@ -1,7 +1,7 @@
 # Using Multiple Accounts
 
 ```javascript
-const maker = Maker.create({
+const maker = await Maker.create({
   url: 'http://localhost:2000',
   accounts: {
     other: {type: privateKey, key: someOtherKey},
@@ -34,7 +34,7 @@ When the Maker instance is first created, it will use the account named `default
 ## Account types
 
 ```javascript
-const maker = Maker.create({
+const maker = await Maker.create({
   url: 'http://localhost:2000',
   accounts: {
     // this will be the first account from the provider at
@@ -63,7 +63,7 @@ In addition to the `privateKey` account type, there are two other built-in types
 import TrezorPlugin from '@makerdao/dai-plugin-trezor-web';
 import LedgerPlugin from '@makerdao/dai-plugin-ledger-web';
 
-const maker = Maker.create({
+const maker = await Maker.create({
   plugins: [
     TrezorPlugin,
     LedgerPlugin,
