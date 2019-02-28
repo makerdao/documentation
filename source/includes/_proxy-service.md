@@ -43,13 +43,13 @@ Many of the functions in `DSProxyService` will only be relevant to `power users`
 ## currentProxy
 
 ```javascript
-function getProxy() {
+asnyc function getProxy() {
   return maker.service('proxy').currentProxy();
 }
 ```
 
 * **Params:** None
-* **Returns:** Address **or** `null`
+* **Returns:** promise (resolves to address **or** `null`)
 
 If the `currentAccount` (according the `Web3Service`) has already deployed a DSProxy, `currentProxy()` returns its address. If not, it returns `null`. It will update automatically in the event that the active account is changed.
 
@@ -99,22 +99,22 @@ The value of `dsProxy` can either be `true` or an explicitly provided DSProxy ad
 ## getProxyAddress
 
 ```javascript
-const proxy = maker.service('proxy').getProxyAddress('0x...');
+const proxy = await maker.service('proxy').getProxyAddress('0x...');
 ```
 
 * **Params:** Address (optional)
-* **Returns:** Contract address
+* **Returns:** promise (resolves to contract address)
 
 `getProxyAddress` will query the proxy registry for the profile proxy address associated with a given account. If no address is provided as a parameter, the function will return the address of the proxy owned by the `currentAccount`.
 
 ## getOwner
 
 ```javascript
-const owner = maker.service('proxy').getOwner('0x...');
+const owner = await maker.service('proxy').getOwner('0x...');
 ```
 
 * **Params:** Address
-* **Returns:** Address
+* **Returns:** promise (resolves to address)
 
 `getOwner` will query the proxy registry for the owner of a provided instance of DSProxy.
 
