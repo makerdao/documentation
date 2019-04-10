@@ -28,7 +28,7 @@ Get the current USD price of the governance token MKR, as a `USD_MKR` [price uni
 ## getPethPrice
 
 ```javascript
-await pethPrice = price.getPethPrice();
+const pethPrice = await price.getPethPrice();
 ```
 
 Get the current USD price of PETH (pooled ethereum), as a `USD_PETH` [price unit](#units).
