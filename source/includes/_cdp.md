@@ -168,7 +168,7 @@ return await cdp.shut();
 * **Params:** none
 * **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
-`cdp.shut()` wipes all remaining dai, frees all remaining collateral, and deletes the CDP. This will fail if the caller does not have enough DAI and MKR to wipe all debt.
+`cdp.shut()` wipes all remaining dai, frees all remaining collateral, and deletes the CDP. This will fail if the caller does not have enough DAI to wipe all the dai debt and enough MKR to pay for all the accrued stability fee
 
 ## **bite**
 

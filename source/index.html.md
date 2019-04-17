@@ -11,8 +11,10 @@ includes:
   - getting-started
   - maker
   - cdp
+  - tokens
   - price
   - cdp-type-parameters
+  - token-conversion
   - exchange
   - system-status
   - events
