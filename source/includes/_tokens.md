@@ -2,14 +2,15 @@
 
 ```javascript
 const tokenService = maker.service('token');
-const dai = tokenService.getToken('DAI');
+const dai = tokenService.getToken(DAI);
+const weth = tokenService.getToken(WETH);
+const peth = tokenService.getToken(PETH);
 ```
 Get a token object through the getToken(tokenSymbol) function on the tokenService
 
-Here's the list of tokens that can be passed into getToken(): 'DAI', 'MKR', 'WETH', 'PETH', 'ETH' (can also be obtained with `tokenService.getTokens()`).  
-A [currency unit](https://makerdao.com/documentation/#units) can also be passed into `getTokens()` instead 
+Here's the list of tokens that can be passed into getToken(): DAI, MKR, WETH, PETH, ETH (this list can also be obtained with `tokenService.getTokens()`.  This function returns a string representation of the token symbol, e.g. 'DAI', which can also be passed into `getToken`).  
 
-The below methods can be called on any token object.  Dai is used as an example, but they apply to all tokens
+The below methods can be called on any token object, except for `deposit` and `withdraw` are for Weth only, and `join` and `exit` are for Peth only.
 
 ## **allowance**
 
@@ -22,7 +23,7 @@ const allowance = await dai.allowance('0x...owner', '0x...spender');
 	* `spender` - address of token spender
 * **Returns:** promise (resolves to token allowance)
 
-`allowance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token allowance
+`allowance` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token allowance
 
 ## **balance**
 
@@ -33,7 +34,7 @@ const balance = await dai.balance();
 * **Params:** none
 * **Returns:** promise (resolves balance of current account)
 
-`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the current account
+`balance` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the current account
 
 ## **balanceOf**
 
@@ -44,7 +45,7 @@ const balanceOf = await dai.balanceOf('0x...f00');
 * **Params:** address to check
 * **Returns:** promise (resolves balance of address)
 
-`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the supplied account
+`balanceOf` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the supplied account
 
 ## **totalSupply**
 
@@ -55,12 +56,12 @@ const totalSupply = await dai.totalSupply();
 * **Params:** none
 * **Returns:** promise (resolves total supply of token)
 
-`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the total token supply
+`totalSupply` returns a [currency unit](https://makerdao.com/documentation/#units) representing the total token supply
 
 ## **approve**
 
 ```javascript
-return await dai.approve('0x...f00', 10000);
+return await dai.approve('0x...f00', DAI(10));
 ```
 
 * **Params:** 
@@ -68,7 +69,7 @@ return await dai.approve('0x...f00', 10000);
 	* `amount` - amount of token to allow
 * **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
-`approve()` approves the spending address to spend up to `amount` of `msg.sender`'s tokens
+`approve` approves the spending address to spend up to `amount` of `msg.sender`'s tokens
 
 ## **approveUnlimited**
 
@@ -79,12 +80,12 @@ return await dai.approveUnlimited('0x...f00');
 * **Params:** address of token spender
 * **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
-`approveUnlimited()` approves the spending address to spend the maximum amount of `msg.sender`'s tokens
+`approveUnlimited` approves the spending address to spend the maximum amount of `msg.sender`'s tokens
 
 ## **transfer**
 
 ```javascript
-return await dai.transfer('0x...f00', 100);
+return await dai.transfer('0x...f00', DAI(10));
 ```
 
 * **Params:** 
@@ -92,12 +93,12 @@ return await dai.transfer('0x...f00', 100);
 	* `amount` - amount of token to send
 * **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
-`transfer()` transfers `amount` of token to `to` address
+`transfer` transfers `amount` of token to `to` address
 
 ## **transferFrom**
 
 ```javascript
-return await dai.transferFrom('0x...fr0m', '0x...t0', 100);
+return await dai.transferFrom('0x...fr0m', '0x...t0', DAI(10));
 ```
 
 * **Params:** 
@@ -107,3 +108,47 @@ return await dai.transferFrom('0x...fr0m', '0x...t0', 100);
 * **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
 
 `transferFrom()` transfers `amount` of token from `from` address to `to` address. Transaction will fail if `msg.sender` does not have allowance to transfer the amount of tokens from the `from` address.
+
+## **deposit (WETH only)**
+
+```javascript
+return await weth.deposit(ETH(10));
+```
+
+* **Params:** amount of Eth to deposit
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
+
+`deposit` converts `amount` of Eth to `amount` of Weth
+
+## **withdraw (WETH only)**
+
+```javascript
+return await weth.withdraw(WETH(10));
+```
+
+* **Params:** amount of Weth to withdraw
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
+
+`withdraw` converts `amount` of Weth to `amount` of Eth
+
+## **join (PETH only)**
+
+```javascript
+return await peth.join(WETH(10));
+```
+
+* **Params:** amount of Weth to join
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
+
+`join` converts `amount` of Weth to Peth, at the [Weth to Peth Ratio](#getwethtopethratio)
+
+## **exit (PETH only)**
+
+```javascript
+return await peth.exit(PETH(10));
+```
+
+* **Params:** amount of Peth to exit
+* **Returns:** promise (resolves to [`transactionObject`](#transactions) once mined)
+
+`withdraw` converts `amount` of Peth to Weth, at the [Weth to Peth Ratio](#getwethtopethratio)
