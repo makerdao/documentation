@@ -7,7 +7,7 @@ const dai = tokenService.getToken('DAI');
 Get a token object through the getToken(tokenSymbol) function on the tokenService
 
 Here's the list of tokens that can be passed into getToken(): 'DAI', 'MKR', 'WETH', 'PETH', 'ETH' (can also be obtained with `tokenService.getTokens()`).  
-A [currency unit instance](https://makerdao.com/documentation/#units) can also be passed into `getTokens()` instead 
+A [currency unit](https://makerdao.com/documentation/#units) can also be passed into `getTokens()` instead 
 
 The below methods can be called on any token object.  Dai is used as an example, but they apply to all tokens
 
@@ -22,7 +22,7 @@ const allowance = await dai.allowance('0x...owner', '0x...spender');
 	* `spender` - address of token spender
 * **Returns:** promise (resolves to token allowance)
 
-`allowance()` returns a [currency unit instance](https://makerdao.com/documentation/#units) representing the token allowance
+`allowance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token allowance
 
 ## **balance**
 
@@ -33,7 +33,7 @@ const balance = await dai.balance();
 * **Params:** none
 * **Returns:** promise (resolves balance of current account)
 
-`balance()` returns a [currency unit instance](https://makerdao.com/documentation/#units) representing the token balance of the current account
+`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the current account
 
 ## **balanceOf**
 
@@ -44,7 +44,7 @@ const balanceOf = await dai.balanceOf('0x...f00');
 * **Params:** address to check
 * **Returns:** promise (resolves balance of address)
 
-`balance()` returns a [currency unit instance](https://makerdao.com/documentation/#units) representing the token balance of the supplied account
+`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the token balance of the supplied account
 
 ## **totalSupply**
 
@@ -55,7 +55,7 @@ const totalSupply = await dai.totalSupply();
 * **Params:** none
 * **Returns:** promise (resolves total supply of token)
 
-`balance()` returns a [currency unit instance](https://makerdao.com/documentation/#units) representing the total token supply
+`balance()` returns a [currency unit](https://makerdao.com/documentation/#units) representing the total token supply
 
 ## **approve**
 

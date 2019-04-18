@@ -21,6 +21,7 @@ includes:
   - transaction
   - accounts
   - proxy-service
+  - web3
   - source-code-setup
   - new-service
 

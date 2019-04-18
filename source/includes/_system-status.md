@@ -25,4 +25,4 @@ const targetPrice = await ethCdp.getTargetPrice();
 * **Params:** none
 * **Returns:** promise (resolves to target price)
 
-`getTargetPrice()` returns the target price of Dai in USD, that is, the value to which Dai is soft-pegged, e.g. 1.0
+`getTargetPrice()` returns the target price of Dai in USD, that is, the value to which Dai is soft-pegged, which historically has been 1.  It returns a `USD_DAI` [price unit](#units).
